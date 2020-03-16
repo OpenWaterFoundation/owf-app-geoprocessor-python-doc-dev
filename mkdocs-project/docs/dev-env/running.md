@@ -12,10 +12,10 @@ The GeoProcessor is typically run in the development environment using a script 
 and sets `PYTHONPATH` to include the development GeoProcessor files:
 
 * ![Cygwin](../images/cygwin-32.png) Linux:
-	+ `scripts/gpdev` - **Not yet developed.**
+	+ `scripts/gpdev` - **Not yet fully developed.**
 	+ Run the testing framework by deploying to Cygwin Python virtual machine to run testing framework
 * ![Linux](../images/linux-32.png) Linux:
-	+ `scripts/gpdev` - **Not yet developed.**
+	+ `scripts/gpdev` - **Not yet fully developed.**
 	+ Run the testing framework by deploying to Linux Python virtual machine to run testing framework
 * ![Windows](../images/windows-32.png) Windows 10:
 	+ [`scripts/gpdev.bat`](https://github.com/OpenWaterFoundation/owf-app-geoprocessor-python/blob/master/scripts/gpdev.bat) batch file.
@@ -49,6 +49,8 @@ It does not run the most recent code being edited and therefore has limited use 
 other than testing deployment (such as confirming dependencies).
 
 ## Running in the Testing Framework Environment ##
+
+**The `gptest` variant of the GeoProcessor is not currently actively developed.**
 
 The GeoProcessor can be run in a limited test environment that does not use the QGIS software,
 using a script that uses Python 3 in a Python virtual environment:

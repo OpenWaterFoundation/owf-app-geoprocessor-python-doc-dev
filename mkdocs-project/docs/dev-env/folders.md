@@ -1,7 +1,8 @@
 # GeoProcessor / Development Environment / Folders #
 
-GeoProcessor developer occurs in a folder structure that is consistent between software developers.
-This ensures that scripts used to perform development tasks work for all developers.
+It is recommended that GeoProcessor development occur in a folder structure that is consistent between software developers.
+This ensures that scripts used to perform development tasks work for all developers
+and developer documentation is accurate.
 
 * [Development Environment Folders](#development-environment-folders)
 * [Developer Preferences](#developer-preferences)
@@ -15,9 +16,7 @@ This ensures that scripts used to perform development tasks work for all develop
 
 The following is the recommended folder structure for the GeoProcessor development environment.
 The primary development environment is currently Windows 10.
-Secondary testing occurs on Cygwin and is primarily focused on the `gptest` testing framework.
-Development typically occurs mostly in Windows 10, followed by testing framework (`gptest`) testing on Cygwin,
-and finally additional testing and enhancement in a full Linux environment.
+Secondary testing occurs on Cygwin and Linux environments.
 Additional environments for development and testing will be added over time.
 
 ```text
@@ -28,10 +27,9 @@ C:\Users\user\owf-dev\                         Top-level development folder (Win
     git-repos/                                 Git repositories for the GeoProcessor.
       owf-app-geoprocessor-arcpy/              Code repository for ArcGIS version (only if developing ArcGIS version).
       owf-app-geoprocessor-python/             Code repository.
+      owf-app-geoprocessor-python-doc-dev/     User documentation.
       owf-app-geoprocessor-python-doc-user/    User documentation.
       owf-app-geoprocessor-python-test/        Functional tests.
-      owf-util-git/                            Optional git utility scripts.
-
 ```
 
 ## Developer Preferences ##

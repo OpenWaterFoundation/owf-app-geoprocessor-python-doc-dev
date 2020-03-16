@@ -1,6 +1,6 @@
 #!/bin/sh
 #
-# Copy the site/* contents to the learn.openwaterfoundation.org website
+# Copy the site/* contents to the software.openwaterfoundation.org website
 # - replace all the files on the web with local files
 # - must specify Amazon profile as argument to the script
 
@@ -39,6 +39,36 @@ checkSourceDocs() {
 	:
 }
 
+# Get the version of the GeoProcessor software
+# - get from the source file
+getVersion() {
+	#local gitRepoFolder, gpRepoFolder, repoFolder, srcFolder
+	#local majorVersion, microVersion, minorVersion, modVersion
+
+	# repoFolder should be '/.../owf-app-geoprocessor-doc-dev'
+	repoFolder=$(dirname $scriptFolder)
+	# gitReposFolder should be '/.../git-repos'
+	gitReposFolder=$(dirname $repoFolder)
+	# gpRepoFolder should be '/.../owf-app-geoprocessor-python'
+	gpRepoFolder="${gitReposFolder}/owf-app-geoprocessor-python"
+	srcFolder="${gpRepoFolder}/geoprocessor/app"
+	versionFile="${srcFolder}/version.py"
+	if [ -f "${versionFile}" ]; then
+		echo "Getting version from:  $versionFile"
+	else
+		echo "Version folder does not exist:  $versionFile"
+		exit 1
+	fi
+	# Get the version parts because full version string is not a literal in code
+	majorVersion=$(grep app_version_major $versionFile | grep -v str | cut -d '=' -f 2 | tr -d " " | tr -d '"')
+	minorVersion=$(grep app_version_minor $versionFile | grep -v str | cut -d '=' -f 2 | tr -d " " | tr -d '"')
+	microVersion=$(grep app_version_micro $versionFile | grep -v str | cut -d '=' -f 2 | tr -d " " | tr -d '"')
+	modVersion=$(grep app_version_mod $versionFile | grep -v str | cut -d '=' -f 2 | tr -d " " | tr -d '"')
+	# Form the version from the parts, will be globally visible
+	version="${majorVersion}.${minorVersion}.${microVersion}.${modVersion}"
+	echo "Determined version=${version}"
+}
+
 # Entry point into the script
 
 # Make sure the MkDocs version is OK
@@ -48,21 +78,28 @@ checkMkdocsVersion
 checkSourceDocs
 
 # Get the folder where this script is located since it may have been run from any folder
-scriptFolder=`cd $(dirname "$0") && pwd`
+scriptFolder=$(cd $(dirname "$0") && pwd)
+echo "Script folder = ${scriptFolder}"
 # Change to the folder where the script is since other actions below are relative to that
 cd ${scriptFolder}
+
+# Get the software version
+getVersion
 
 # Set --dryrun to test before actually doing
 dryrun=""
 #dryrun="--dryrun"
-s3Folder="s3://learn.openwaterfoundation.org/owf-app-geoprocessor-python-doc-dev"
+s3VersionFolder="s3://software.openwaterfoundation.org/geoprocessor/${version}/doc-dev"
+s3LatestFolder="s3://software.openwaterfoundation.org/geoprocessor/latest/doc-dev"
 
 if [ "$1" == "" ]
 	then
 	echo ""
 	echo "Usage:  $0 AmazonConfigProfile"
 	echo ""
-	echo "Copy the site files to the Amazon S3 static website folder:  $s3Folder"
+	echo "Copy the site files to the Amazon S3 static website folders:"
+	echo "  $s3VersionFolder"
+	echo "  $s3LatestFolder"
 	echo ""
 	exit 0
 fi
@@ -72,9 +109,36 @@ awsProfile="$1"
 # First build the site so that the "site" folder contains current content.
 # - "mkdocs serve" does not do this
 
-cd ../mkdocs-project; mkdocs build --clean; cd ../build-util
+echo "Building mkdocs-project/site folder..."
+cd ../mkdocs-project
+mkdocs build --clean
+cd ${scriptFolder}
 
 # Now sync the local files up to Amazon S3
-aws s3 sync ../mkdocs-project/site ${s3Folder} ${dryrun} --delete --profile "$awsProfile"
+if [ -n "${version}" ]; then
+	# Upload documentation to the versioned folder
+	echo "Uploading documentation to:  ${s3VersionFolder}"
+	read -p "Continue [Y/n/q]? " answer
+	if [ -z "${answer}" -o "${answer}" = "y" -o "${answer}" = "Y" ]; then 
+		aws s3 sync ../mkdocs-project/site ${s3VersionFolder} ${dryrun} --delete --profile "$awsProfile"
+		exitStatusVersion=$?
+	elif [ "${answer}" = "q" ]; then 
+		exit 0
+	fi
+fi
 
-exit $?
+read -p "Also copy documentation to 'latest' [y/n]? " answer
+exitStatusLatest=0
+if [ "${answer}" = "y" ]; then 
+	echo "Uploading documentation to:  ${s3LatestFolder}"
+	read -p "Continue [Y/n/q]? " answer
+	if [ -z "${answer}" -o "${answer}" = "y" -o "${answer}" = "Y" ]; then 
+		aws s3 sync ../mkdocs-project/site ${s3LatestFolder} ${dryrun} --delete --profile "$awsProfile"
+		exitStatusLatest=$?
+	elif [ "${answer}" = "q" ]; then 
+		exit 0
+	fi
+fi
+
+exitStatus=$(expr ${exitStatusVersion} + ${exitStatusLatest})
+exit ${exitStatus}

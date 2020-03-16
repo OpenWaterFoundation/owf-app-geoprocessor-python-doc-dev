@@ -43,8 +43,8 @@ Command names in the GeoProcessor follow a number of conventions and new command
 
 1. Commands fall into broad functional type, such as reading, manipulating, and writing data.
 Command names should include important words like `Read`.
-2. Commands should perform one singular task.
-Commands can be combined with other commands in a command file.
+2. A command should perform one singular task.
+A command can be run in sequence with other commands in a command file.
 Therefore, the command name should include an clear action, subject of the action, and modifiers.
 For example Action=Read, subject=GeoLayer, modifier=FromXxxx would give a command `ReadGeoLayerFromXxxx`.
 3. Use mixed case to make it easier to read words together without spaces.
@@ -61,7 +61,7 @@ The repository issue can be used to track progress on new development.
 ## Create a Branch for Development ##
 
 The development of a new command should occur in a repository using normal protocols.
-For example, name the branch with the issue number and new command name, for example `10-eadgeolayerfromxxx`.
+For example, name the branch with the issue number and new command name, for example `10-readgeolayerfromxxx`.
 Use of `10-feature...` or similar is OK but can lead to long branch names.
 
 ## Modify Code ##
@@ -99,9 +99,9 @@ user a menu for a new command:
 examining existing menus.
 2. Edit the `GeoProcessorUI` class and search for the nearest command determined above.
 Add code similar to other code.
-3. If necessary, add a new menu for the command.
+3. If necessary, add a new menu for the command if new command group is needed.
 
-In the future commands may be added to menus based on data in the command class.
+In the future commands may be automatically added to menus based on data in the command class.
 
 ### Add Code to Other Modules ###
 

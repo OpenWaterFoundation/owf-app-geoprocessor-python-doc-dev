@@ -34,7 +34,9 @@ packages, which helps understand which packages are needed in the deployed syste
 The following image illustrates the interpreter installed in a generic `venv` folder,
 which is listed in the main `.gitignore` file.
 
+**<p style="text-align: center;">
 ![PyCharm interpreter](images/pycharm-settings-project-interpreter.png)
+</p>**
 
 **<p style="text-align: center;">
 General Project Python Interpreter (<a href="../images/pycharm-settings-project-interpreter.png">see full-size image</a>)
@@ -50,7 +52,9 @@ However, the GeoProcessor is typically run in the development environment using 
 The following image illustrates the interpreter installed in a versioned `venv-qgis-python37` folder for clarity,
 which is listed in the main `.gitignore` file.
 
+**<p style="text-align: center;">
 ![PyCharm interpreter](images/pycharm-settings-project-interpreter-qgis.png)
+</p>**
 
 **<p style="text-align: center;">
 QGIS Project Python Interpreter (<a href="../images/pycharm-settings-project-interpreter-qgis.png">see full-size image</a>)
@@ -149,7 +153,9 @@ First start PyCharm for the GeoProcessor.
 Then select the project settings in PyCharm with ***File / Settings***.
 Then select the ***Project Interpreter*** item, as shown below.
 
+**<p style="text-align: center;">
 ![Update Python 1](images/update-pycharm-python1.png)
+</p>**
 
 **<p style="text-align: center;">
 PyCharm Project Interpreter Configuration (<a href="../images/update-pycharm-python1.png">see full-size image</a>)
@@ -160,7 +166,9 @@ The `C:\OSGeo4W64\apps\Python37` and `C:\OSGeo4W64\apps\bin` folders do not incl
 
 Click on the gear icon in the upper right and select ***Show All...***, which will display the following.
 
+**<p style="text-align: center;">
 ![Update Python 2](images/update-pycharm-python2.png)
+</p>**
 
 **<p style="text-align: center;">
 Project Interpreter List (<a href="../images/update-pycharm-python2.png">see full-size image</a>)
@@ -170,7 +178,9 @@ Clicking on the + icon in the upper right will show the following dialog to add 
 In this case the error is due to QGIS having been updated to version 3.7 and the
 `C:\OSGeo4W64\apps\Python36` folder no longer exists.
 
+**<p style="text-align: center;">
 ![Update Python 3](images/update-pycharm-python3.png)
+</p>**
 
 **<p style="text-align: center;">
 Add Python Interpreter (<a href="../images/update-pycharm-python3.png">see full-size image</a>)
@@ -179,7 +189,9 @@ Add Python Interpreter (<a href="../images/update-pycharm-python3.png">see full-
 To create a new virtual environment,
 use the ***Base Interpreter ...*** button to select a new QGIS Python, for example select Python37 as shown below.
 
+**<p style="text-align: center;">
 ![Update Python 4](images/update-pycharm-python4.png)
+</p>**
 
 **<p style="text-align: center;">
 Specify Base Python Interpreter (<a href="../images/update-pycharm-python4.png">see full-size image</a>)
@@ -190,7 +202,9 @@ This may take a minute or two.
 This will only copy the core Python executable programs and files, but not `site-packages` or other third-party packages.
 Once the virtual environment is created, it will be listed in available ***Project Interpreters*** as shown in the following figure.
 
+**<p style="text-align: center;">
 ![Update Python 5](images/update-pycharm-python5.png)
+</p>**
 
 **<p style="text-align: center;">
 Project Interpreters After Adding an Interpreter (<a href="../images/update-pycharm-python5.png">see full-size image</a>)
@@ -199,7 +213,9 @@ Project Interpreters After Adding an Interpreter (<a href="../images/update-pych
 Select the new virtual environment and press ***OK***.
 The following dialog will be shown showing the installed packages.
 
+**<p style="text-align: center;">
 ![Update Python 5](images/update-pycharm-python6.png)
+</p>**
 
 **<p style="text-align: center;">
 Packages Intalled for an Interpreter (<a href="../images/update-pycharm-python6.png">see full-size image</a>)

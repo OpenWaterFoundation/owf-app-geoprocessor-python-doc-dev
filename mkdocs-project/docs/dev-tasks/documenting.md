@@ -3,8 +3,8 @@
 ## Developer Documentation ##
 
 Developer documentation uses the MkDocs software.
-See the [developer documentation in the main code repository](https://github.com/OpenWaterFoundation/owf-app-geoprocessor-python/blob/master/doc-dev-mkdocs-project/README.md).
-The developer documentation is maintained with the code since it needs to be kept consistent with changes in the code.
+See the [developer documentation repository](https://github.com/OpenWaterFoundation/owf-app-geoprocessor-python-doc-dev).
+The developer documentation is maintained in a separate repository simplify contributions.
 
 ## User Documentation ##
 
