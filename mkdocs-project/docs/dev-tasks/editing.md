@@ -7,10 +7,10 @@ The following guidelines are recommended for using PyCharm:
 * As much as possible, follow the [Style Guide for Python Code](https://www.python.org/dev/peps/pep-0008/),
 with GeoProcessor conventions:
 	+ Module and function naming:
-		+ Package names are generally lowercase (e.g., `geoprocessor.core`)
-		+ Class names are MixedCase (e.g, `GeoProcessor` in file `geoprocessor/core/GeoProcessor.py`)
-		+ Non-class module names are lowercase
-		+ Function names are lowercase and use underscores to separate words, as needed
+		+ Package names are generally lowercase (e.g., `geoprocessor.core`).
+		+ Class names are MixedCase (e.g, `GeoProcessor` in file `geoprocessor/core/GeoProcessor.py`).
+		+ Non-class module names are lowercase.
+		+ Function names are lowercase and use underscores to separate words, as needed.
 		+ **Exception to these standards may occur, in particular function names that include uppercase where appropriate.**
 	+ Module file contents:
 		+ Each class has its own file (`ClassName.py` for class named `ClassName`).

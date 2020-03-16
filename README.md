@@ -1,10 +1,10 @@
-# owf-app-geoprocessor-python-doc-user #
+# owf-app-geoprocessor-python-doc-dev #
 
 This repository contains the [Open Water Foundation (OWF)](http://openwaterfoundation.org/) GeoProcessor software developer documentation.
 
-See the deployed documentation for developers (this documentation):  [OWF / Learn GeoProcessor (for developers)](http://learn.openwaterfoundation.org/owf-app-geoprocessor-python-doc-dev/).
+See the [latest deployed developer documentation](http://software.openwaterfoundation.org/geoprocessor/latest/doc-dev/).
 
-See also the deployed documentation for users:  [OWF / Learn GeoProcessor](http://learn.openwaterfoundation.org/owf-app-geoprocessor-python-doc-user/).
+See also the [latest deployed user documentation](http://software.openwaterfoundation.org/geoprocessor/latest/doc-user/).
 
 The documentation is maintained as a separate repository to facilitate edits and distribution.
 
@@ -36,10 +36,7 @@ maintained under version control, such as on GitHub.
 
 ## Repository Contents ##
 
-The repository for developer documentation is part of the full GeoProcessor code repository and contains the following folders.
-Note that this folder structure is slightly different that the user documentation,
-which exists in its own [GitHub repository
-(owf-app-geoprocessor-python-doc-user)](https://github.com/OpenWaterFoundation/owf-app-geoprocessor-python-doc-user).
+This repository contains the following main folders.
 
 ```text
 owf-app-geoprocessor-python-doc-dev/   GeoProcessor development repository.
@@ -65,8 +62,8 @@ The development environment will change as the developers upgrade to newer versi
 If the development environment is properly configured, edit and view content as follows:
 
 1. Edit content in the `docs` folder and update `mkdocs.yml` as appropriate.
-2. Run the `build-util/run-mkdocs-serve-8000.sh` script (Linux) or equivalent.
-3. View content in a web browser using URL `http://localhost:8000`.
+2. Run the `build-util/run-mkdocs-serve-8001.sh` script (Linux) or equivalent.
+3. View content in a web browser using URL `http://localhost:8001`.
 
 ## Style Guide ##
 

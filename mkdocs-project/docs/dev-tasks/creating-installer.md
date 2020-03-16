@@ -1,5 +1,7 @@
 # GeoProcessor / Development Tasks / Creating Installer #
 
+**This documentation needs to be updated.  Changes to the development environment have occurred since the last public release.**
+
 The GeoProcessor is not packaged via a `pip` or `pipenv` installer (or `apt-get` on Linux).
 The deployment process uses a Python virtual environment.
 

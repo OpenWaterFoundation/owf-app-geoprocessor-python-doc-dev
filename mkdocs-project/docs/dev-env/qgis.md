@@ -3,8 +3,8 @@
 The GeoProcessor is being developed for QGIS 3.x, which uses Python 3.6+.
 QGIS is distributed with an optional long-term stable release that uses Python 2.7;
 this version was used with initial GeoProcessor development but is no longer used.
-The following resources explain how to install QGIS, and 64-bit QGIS is recommended if the
-computer operating system is 64-bit.
+The following resources explain how to install QGIS,
+and 64-bit QGIS is recommended if the computer operating system is 64-bit.
 
 * [Install QGIS](#install-qgis)
 * [Install Additional Python Packages](#install-additional-python-packages)
@@ -20,7 +20,7 @@ Install QGIS:
 [OWF / Learn QGIS](http://learn.openwaterfoundation.org/owf-learn-qgis/install-qgis/install-qgis/) documentation
 provide information about the QGIS downloads.
 * [QGIS download page](https://www.qgis.org/en/site/forusers/download.html)
-	+ Currently, the OSGeo4W install is recommended for GeoProcessor development.
+	+ Currently, the OSGeo4W install is used for GeoProcessor development.
 	There is generally no need for map server, etc., but these components of the OSGeo4W suite may be
 	integrated later.
 	+ The standalone QGIS install can also be used but has not been tested or documented for a PyCharm project setup.
@@ -29,6 +29,9 @@ provide information about the QGIS downloads.
 		However, this will require installing add-on packages like `pandas`.
 	+ The QGIS ***Express Install*** is generally OK since long term release QGIS 2 is no longer
 	in GeoProcessor development.
+	+ **Additional work is necessary in order to test whether the stand-alone QGIS installer,
+	which is the version used in deployed systems,
+	instead of OSGeo4W installation can be used for development.**
 * For information on how QGIS is packaged, see:
 [QGIS Version Install Experiments](../resources/qgis-version-install-experiments.md) for detailed background.
 

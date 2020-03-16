@@ -10,12 +10,12 @@ The GeoProcessor uses the Python logging features to create a log file that is h
 However, although log files may be helpful to software developers, they can be difficult for others to understand.
 The log file exists in the following locations:
 
-* User's home folder GeoProcessor files, for example:
-	+ Windows: `C:\Users\user\.owf-gp\log\gp_user.log`
-	+ Linux:  `/home/user/.owf-gp/log/gp_user.log`
-	+ Cygwin:  `/cygdrive/C/Users/user/.owf-gp/log/gp_user.log` (different files from Windows)
-	+ Git Bash (MinGW):  `/c/Users/user/.owf-gp/log/gp_user.log` (same files as Windows)
-* File specified by the GeoProcessor [StartLog](http://learn.openwaterfoundation.org/owf-app-geoprocessor-python-doc-user/command-ref/StartLog/StartLog/) command.
+* User's home folder GeoProcessor files, for example as follows, where `1` is the GeoProcessor major version and `user` is the user:
+	+ Windows: `C:\Users\user\.owf-gp\1\logs\gp_user.log`
+	+ Linux:  `/home/user/.owf-gp/1/logs/gp_user.log`
+	+ Cygwin:  `/cygdrive/C/Users/user/.owf-gp/1/logs/gp_user.log` (different files from Windows)
+	+ Git Bash (MinGW):  `/c/Users/user/.owf-gp/1/logs/gp_user.log` (same files as Windows)
+* File specified by the GeoProcessor [StartLog](http://software.openwaterfoundation.org/geoprocessor/latest/doc-user/command-ref/StartLog/StartLog/) command.
 
 The log file contains a sequential record of log messages for application startup followed by
 output from running the commands, as shown in the following example.
@@ -54,12 +54,10 @@ INFO|geoprocessor|gp line 190|ProgramVersionNumber = None
 
 ## Command Status/Log ##
 
-The GeoProcessor user interface (under development) displays command-specific warning messages,
+The GeoProcessor UI displays command-specific warning messages,
 which indicate problems that need to be resolved.
-A command flagged with red X or yellow warning symbol can be reviewed to determine problems.
+A command flagged with red X or yellow warning symbol can be reviewed to determine problems
+by right-clicking on a command and using the ***Show Command Status*** menu or mousing over the error/warning icon.
 
-Pending user interface implementation, the GeoProcessor may be enhanced to add a file to write the command messages.
-
-## Specific Issues ##
-
-Insert here troubleshooting information for specific issues as such issues are identified.
+The current log file can be viewed using the ***Tools / View Log File*** menu.
+The startup log file can be viewed using the ***Tools / View Startup Log File*** menu.

@@ -1,6 +1,7 @@
 #!/bin/sh
 #
-# Run 'mkdocs serve' on port 8000 (default)
+# Run 'mkdocs serve' on port 8001 (default)
+# - use port 8001 because 8000 is used for user documentation
 
 # Supporting functions, alphabetized
 
@@ -53,7 +54,7 @@ cd ${scriptFolder}
 
 cd ../mkdocs-project
 
-echo "View the website using http://localhost:8000"
+echo "View the website using http://localhost:8001"
 echo "Kill the server with CTRL-C"
-#mkdocs serve -a 0.0.0.0:8000
-mkdocs serve
+#mkdocs serve
+mkdocs serve -a 0.0.0.0:8001
