@@ -377,14 +377,14 @@ Command `parameter_input_metadata` Values
 | `FileSelector.SelectFolder`   | File selector | Whether the select selects a folder. | `False` - select a file. |
 | `FileSelector.Title`          | File selector | Title of the file selector. | `Select file` if  selecting a file and `Select folder` if selecting a folder. |
 | `FileSelector.Type`           | File selector | Indicate the type of selector as enumeration `Read`, `Write`.  Will result in `...` button to browse for file or folder. | The parameter does not use a file selector. |
-| `FileSelector.?`              | File selector | Need some way to indicate default file extension, recognized extensions and descriptions | |
+| `FileSelector.Filters`        | File selector | Filters for the file selector as a list of strings, for example: `["GeoJSON file (*.geojson *json)", "All files (*.*)"]`.  Put the default in the first position.  The filters only apply to files, not folders. |
 | `FileSelector.?`              | File selector | Perhaps need a way to set the dimension of a text field or text area. Dialogs are kind of ugly when text fields span the entire width.  Maybe use the concept of number of columns? | |
 | `Group`                       | All | The group (tab) used to group parameters, such as `Input`. | No group used - use simple editor. |
 | `Label`                       | All | The label to be shown to the left of the component.  A colon will be added after the label. | Parameter name. |
 | `Required`                    | All | Indicate whether required:  `Required`, `Optional`, or maybe something more complex. | `False` - parameter is optional. |
 | `Tooltip`                     | All | The tooltip to be shown when moused over the input component. | No tooltip is shown. | Tooltip is not set for component. |
-| `Value.Default`               | Text field, list | The default data value as a string, as if the user entered into the component, to be shown in the description. | Must be specified for choice, defaults to blank for text field. |
-| `Value.Default.Description`   | Text field, list | The description for default data value, to be shown if showing `Value.Default` does not make sense. | Use `Value.Default` if specified. |
+| `Value.Default`               | Text field, list | The default data value as a string, as if the user entered into the component, to be used if no value was entered and will be shown in the parameter description. | Must be specified for choice, defaults to blank for text field. |
+| `Value.Default.Description`   | Text field, list | The description for default data value, to be shown if showing `Value.Default` does not make sense.  For example, specify `GeoViewID` if it will be used as the default for `Name` and also specify `Value.Default=''` (blank string). | Use `Value.Default` if specified. |
 | `Value.DefaultForDisplay`     | Text field, list | The default to display as a string, used in input component.  For example, specify an empty string to enter into a combobox. | |
 | `Values`                      | List | Indicate a list of values to show in choices, as an array of strings, for example: `["", "Value1", "Value2"]` | Values are only used for combobox. |
 | `Values.Editable`             | List | Whether the parameter is editable, as a bool `True` or `False`.   An editable combobox allows text to be entered. | `True` for text fields, `False` for combobox. |
