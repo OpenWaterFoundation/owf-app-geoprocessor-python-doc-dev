@@ -49,9 +49,7 @@ owf-app-geoprocessor-python-doc-dev/   GeoProcessor development repository.
 
 ## Development Environment ##
 
-The development environment for developer documentation requires installation of Python, MkDocs, and Material MkDocs theme.
-**Python 2 has been used for documentation development, although the Python used for MkDocs documentation
-is the general version installed on the computer, rather than the QGIS version used with the GeoProcessor.**
+The development environment for developer documentation requires installation of Python 3, MkDocs, and Material MkDocs theme.
 See the [OWF / Learn MkDocs](http://learn.openwaterfoundation.org/owf-learn-mkdocs/)
 documentation for information about installing these tools.
 

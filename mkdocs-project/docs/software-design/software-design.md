@@ -16,6 +16,7 @@ while incorporating TSTool design elements.
 * [`GeoLayer` Class](#geolayer-class) - main class for storing vector and raster layers
 * [`GeoProcessorUI` Class](#geoprocessor-class) - user interface
 * [`GeoMap` Class](#geomap-class) - describes maps
+* [`GeoMapProject` Class](#geomapproject-class) - describes map projects (one or more related maps)
 * [Built-in Test Framework](#built-in-test-framework) - used to run functional tests
 * [Future Design Elements](#future-design-elements) - as-yet implemented features
 
@@ -113,7 +114,7 @@ In the PyCharm development virtual environment, PyCharm uses the project Python 
 relies on `PYTHONPATH` to find QGIS libraries.
 
 * To start PyCharm in the **developer environment**, run the setup batch file from Windows command prompt: 
-[build-util/run-pycharm-ce-for-qgis.bat](https://github.com/OpenWaterFoundation/owf-app-geoprocessor-python/tree/master/build-util/run-pycharm-ce-for-qgis.bat).
+[`build-util/run-pycharm-ce-for-qgis.bat`](https://github.com/OpenWaterFoundation/owf-app-geoprocessor-python/tree/master/build-util/run-pycharm-ce-for-qgis.bat).
 	+ This batch file runs the QGIS `ow4_env.bat` batch file and performs additional configuration.
 	+ The batch file searches for recent versions of PyCharm and QGIS to try to use most recent tested versions.
 * To run the GeoProcessor in the **development environment**, run one of the following `dev` scripts,
@@ -166,14 +167,16 @@ The GeoProcessor provides the following design elements and functionality.
 An instance is created to maintain a list of commands and run the commands.
 The following are the primary `GeoProcessor` data members,
 which are typically accessed and updated directly in typical Pythonic fashion.
+The primary data are also listed in the ***Results*** area of the UI.
 
-| **GeoProcessor Data Object** | **Description** |
+| **GeoProcessor Data Object**&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | **Description** |
 | -- | -- |
 | `commands` | List of command class objects, which are expected to extend from [`AbstractCommand`](https://github.com/OpenWaterFoundation/owf-app-geoprocessor-python/blob/master/geoprocessor/commands/abstract/AbstractCommand.py) class ([discussed below](#abstractcommand-and-command-classes)). |
-| `properties` | Dictionary of property objects for use by the processor, for example string that contains the working directory. |
 | `datastores` | A list of `DataStore` objects, which are created by the processor for database connections. |
 | `geolayers` | A list of `GeoLayer` objects, which are created by the processor for vector (`VectorGeoLayer`) and raster (`RasterGeoLayer`) spatial data layer objects. |
 | `geomaps` | A list of `GeoMap` objects, which are created by the processor to describe maps. |
+| `geomapprojects` | A list of `GeoMapProject` objects, which are created by the processor to describe groups of maps. |
+| `properties` | Dictionary of property objects for use by the processor, for example string that contains the working directory. |
 | `output_files` | A list of output files, which are created by the processor during processing. |
 | `tables` | A list of `Table` objects, which are created by the processor for data tables. |
 
@@ -306,10 +309,28 @@ class includes the `command_status` data object, which is an instance of
 [`CommandStatus`](https://github.com/OpenWaterFoundation/owf-app-geoprocessor-python/blob/master/geoprocessor/core/CommandStatus.py).
 This object maintains a list of 
 [`CommandLogRecord`](https://github.com/OpenWaterFoundation/owf-app-geoprocessor-python/blob/master/geoprocessor/core/CommandLogRecord.py),
-which allows tracking issues with command initialization and running.
+which allows tracking issues with command initialization, discovery, and run command phase types.
 Populating log messages at a command level is key to providing pinpoint diagnostics used in the UI and
 creating command file run reports with
 [`WriteCommandSummaryToFile`](http://software.openwaterfoundation.org/geoprocessor/latest/doc-user/command-ref/WriteCommandSummaryToFile/WriteCommandSummaryToFile) command.
+The command log messages are displayed by right-clicking on a command and using the ***Show Command Status*** menu item, as illustrated in the following figure.
+
+**<p style="text-align: center;">
+![command-status](images/command-status.png)
+</p>**
+
+**<p style="text-align: center;">
+Command Status(<a href="../images/command-status.png">see full-size image</a>)
+</p>**
+
+The initialization command log messages are created when a command file is loaded or new commands are added in the UI,
+via each command's `check_command_parameters()` function.
+The run command log messages are created in each command's `run_command()` function.
+The GeoProcessor currently does not implement the discovery phase,
+which in TSTool is used to partially run commands in order to provide lists of objects to facilitate editing,
+so that identifiers can be picked from lists rather than being entered into text fields.
+Discovery mode may be implemented in the future to minimize keyboard entry,
+which can increase efficiency and help minimize input errors.
 
 The following is an example of setting the command status in the `check_command_parameters` function via the `add_to_log` function:
 
@@ -445,15 +466,53 @@ Design elements of the class include:
 
 ## `GeoProcessorUI` Class ##
 
+
 The user interface (UI) for the GeoProcessor allows users to edit and run command workflows.
 The UI is run from the `run_ui` function in the `geoprocessor.app.gp` module.
 See the [UI Design](../ui-design/ui-design.md) section for more information about the UI.
 
 ## `GeoMap` Class ##
 
-**This section needs to be completed.**
-
 The `GeoMap` class is used to define configurations for maps, to be displayed in the GeoProcessor and web applications.
+See the discussion of [`GeoMapPropject` Class](#geomapproject-class) for overview of maps.
+Each
+
+## `GeoMapProject` Class ##
+
+The `GeoMapProject` class is used to define configurations for maps, to be displayed in the GeoProcessor and web applications.
+It is conceptually equivalent to QGIS `qgs` and ArcGIS map projects (`mxd`) file. 
+However, the GeoProcess GeoMapProject is a light-weight JSON file that contains relatively minimal configuration information.
+It is envisioned that GeoMapProjects will be used to define map configurations for the following cases,
+which will be implemented over time:
+
+| **GeoMapProject Type** | **Description** |
+| -- | -- |
+| `Dashboard` | An application that has several maps, typically accessible by menus or other user interface components. |
+| `Grid` | A grid (matrix) of maps, for example showing different times. |
+| `SingleMap` | A single GeoMap is included in the GeoMapProject, for typical "single page web applications" where a single map display dominates the application. |
+| `Story` | A sequence of maps that are referenced in a story. |
+
+A GeoMapProject is created using the
+[`CreateGeoMapProject`](http://software.openwaterfoundation.org/geoprocessor/latest/doc-user/command-ref/CreateGeoMapProject/CreateGeoMapProject) command
+and related commands and is written to a file using the 
+[`WriteGeoMapProjectToJSON`](http://software.openwaterfoundation.org/geoprocessor/latest/doc-user/command-ref/WriteGeoMapProjectToJSON/WriteGeoMapProjectToJSON) command.
+
+The contents of the command are consistent with the top-level `GeoMapProject` instance and hierarchy of objects, as follows,
+which are written using the standard Python `json` package.
+
+```
+GeoMapProject                     # Top-level object containing a list of GeoMap.
+   GeoMap []                      # List of GeoMap, each of which can stand alone.
+      GeoLayer []                 # List of all GeoLayer used in a GeoMap.
+      GeoLayerViewGroup []        # List of GeoLayerViewGroup in a GeoMap, used for legend groups.
+        GeoLayerView              # A GeoLayerView assigns a GeoSymbol to a GeoLayer, for viewing.
+           GeoLayer               # Reference to a layer in GeoLayer list (above).
+           GeoSymbol              # Symbol used to visualize the layer.
+```
+
+A GeoMapProject can be used by other software, such as web mapping applications, to display maps.  
+Consequently, the GeoProcessor can be used to automate map creation,
+which can help scale a prototype map to more locations.
 
 ## Built-in Test Framework ##
 
