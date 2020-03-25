@@ -17,8 +17,7 @@
 	+ The [`SimpleCommandEditor` Class](#simplecommandeditor-class) - simple one panel editor
 	+ The [`TabbedCommandEditor` Class](#tabbedcommandeditor-class) - tabbed panel editor
 	+ [Command Input Metadata](#command-input-metadata) - configuring command editors
-* Utility Modules:
-	+ to be added
+* [Utility Modules](#utility-modules)
 * [Resources](#resources)
 
 ------------------
@@ -112,6 +111,7 @@ geoprocessor/
       GeoProcessorUI.py                    The main UI.
       GeoProcessorUI_Design.py             Used to prototype initial UI components using the UI Designer software,
                                            not used in the application.
+      GutterFrame.py                       Component that displays status as colored rectangles to the right of the command list.
     commands/                              Contains all files relating to the GeoProcessor command editors.
       abstract/                            Contains all files relating to the abstract (general) command editors.
         AbstractCommandEditor.py           Parent class for all command editors.
@@ -184,7 +184,7 @@ This widget is an integration of the following components:
 | -- | -- | -- |
 | `command_ListView` | [`GeoProcessorListView`](https://github.com/OpenWaterFoundation/owf-app-geoprocessor-python/blob/master/geoprocessor/ui/core/GeoProcessorListView.py) | List view that extends [`QListView`](https://doc.qt.io/qtforpython/PySide2/QtWidgets/QListView.html), which allows using the [`GeoProcessorListModel`](https://github.com/OpenWaterFoundation/owf-app-geoprocessor-python/blob/master/geoprocessor/ui/core/GeoProcessorListModel.py), which interfaces with the `GeoProcessor` instance.  An earlier design used a `QListWidget`, but this required translating commands to strings in the list, which added additional synchronization and was confusing.  A limitation of `QListView` is that it does not seem to provide as many methods as `QListWidget`. |
 | `number_ListWidget` | [`QListWidget`](https://doc.qt.io/qtforpython/PySide2/QtWidgets/QListWidget.html) | List of command numbers and icon to indicate command status, similar to Eclipse and PyCharm.  The list is synchronized the `command_ListView` after running commands. |
-| `gutter_ListWidget` | [`QListWidget`](https://doc.qt.io/qtforpython/PySide2/QtWidgets/QListWidget.html) | Narrow gutter that indicates command status with a colored block, similar to Eclipse and PyCharm.  The list is synchronized with `command_ListView` after running commands. |
+| `gutter_Frame` | [`QFrame`](https://doc.qt.io/qtforpython/PySide2/QtWidgets/QFrame.html) | Narrow gutter that indicates command status with a colored block, similar to Eclipse and PyCharm.  The component is a simple drawing area that is repainted when `command_ListView` changes.  A list was used initially but is not workable because for a long command file the height of each row is too small. |
 
 Using the above design helps ensure that the user interface interactions with commands uses the list of commands in the `GeoProcessor`.
 
@@ -391,6 +391,21 @@ Command `parameter_input_metadata` Values
 
 See the [`ReadGeoLayerFromGeoJSON`](https://github.com/OpenWaterFoundation/owf-app-geoprocessor-python/blob/master/geoprocessor/commands/vector/ReadGeoLayerFromGeoJSON.py)
 class for an example.
+
+## Utility Modules ##
+
+The UI code uses a number of utility modules as listed below, in addition to the other
+[`core/util`](https://github.com/OpenWaterFoundation/owf-app-geoprocessor-python/tree/master/geoprocessor/ui/util) utility modules.
+These utility modules will likely expand as reusable code is identified.
+
+**<p style="text-align: center;">
+UI Utility Modules
+</p>**
+
+| **Module** | **Description** |
+| -- | -- |
+| [`util/command_util.py`](https://github.com/OpenWaterFoundation/owf-app-geoprocessor-python/blob/master/geoprocessor/util/command_util.py) | Parsing commands, checking command status. |
+| [`io/util/qt_util.py`](https://github.com/OpenWaterFoundation/owf-app-geoprocessor-python/blob/master/geoprocessor/ui/util/qt_util.py) | Qt utility functions. |
 
 ## Resources ##
 
