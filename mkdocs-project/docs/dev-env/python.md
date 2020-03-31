@@ -1,5 +1,19 @@
 # GeoProcessor / Development Environment / Python ##
 
+This documentation describes how to install Python software and third party packages.
+
+* [Introduction](#introduction)
+* [Install Python](#install-python)
+	+ [Python for QGIS](#python-for-qgis) - installs when QGIS is installed
+	+ [Python Outside of QGIS](#python-outside-of-qgis) - needed for MkDocs and creating virtual environment for installer
+* [Install Additional Packages](#install-additional-packages)
+	* [Packages Needed for the Development Environment](#packages-needed-for-the-development-environment)
+	* [Packages Needed by GeoProcessor](#packages-needed-by-geoprocessor)
+
+-----------
+
+## Introduction ##
+
 Multiple versions of Python are installed to support GeoProcessor development and deployment.
 Python versions that are used include:
 
@@ -22,14 +36,6 @@ Therefore it is necessary to install Python and third-party packages in Windows,
 Windows 10 is currently the primary development environment and testing and secondary development occurs on Cygwin and Linux.
 See the sections below discussing the installation of each version.
 
-* [Install Python](#install-python)
-	+ [Python for QGIS](#python-for-qgis) - currently ships with Python 3.7,
-	and 3.6 was previously used with older versions of QGIS
-	+ [Python 3.x](#python-3x) - currently 3.7 is the focus, although versions 3.4 to 3.7 have been used depending on operating system
-* [Install Additional Python Packages](#install-additional-python-packages) - for example `virtualenv`
-
------------------------------
-
 ## Install Python ##
 
 Python must be installed consistent with the development environment and also
@@ -40,11 +46,11 @@ support the QGIS and testing framework variants of the GeoProcessor.
 Python for QGIS is installed when installing QGIS.
 See the [QGIS installation documentation](qgis.md).
 
-### Python 3.x ###
+### Python Outside of QGIS ###
 
-A typical Python installation is used (for example on Cygwin) for the GeoProcessor testing framework variant.
-This Python is used as the base Python version for `virtualenv`, with no QGIS dependencies.
-In this case, Python might use a version installed in a shared location (e.g., `C:\Python37` on Windows),
+A Python installation outside of QGIS is used for MkDocs and as the base interpreter for creating virtual machines.
+
+In this case, Python can be installed in a shared location (e.g., `C:\Python37` on Windows),
 or in a user's account (e.g., `C:\Users\user\AppData\Local\Programs\Python...` on Windows 10).
 The latter is recommended (by the installer dialog and its documentation) for newer Python versions
 to isolate potential negative impacts on the system from Python
@@ -154,7 +160,11 @@ After installing Python it will be necessary to install additional Python packag
 that enable necessary functionality in the development environment,
 such a as creating virtual environments.
 
-### ![Cygwin](../images/cygwin-32.png) Cygwin ###
+### Packages Needed for the Development Environment ###
+
+These packages are needed to support the development environment.
+
+#### ![Cygwin](../images/cygwin-32.png) Cygwin ####
 
 For Cygwin GeoProcessor `gptest` testing framework,
 the GeoProcessor is run in a virtual environment into which are installed necessary Python additional packages.
@@ -168,7 +178,7 @@ from a Cygwin terminal window:
 | `mkdocs-material`     | MkDocs material theme.           | `pip3 install mkdocs-material` |
 | `virtualenv`          | Python virtual environment tool. | `pip3 install virtualenv`      |
 
-### ![Linux](../images/linux-32.png) Linux ###
+#### ![Linux](../images/linux-32.png) Linux ####
 
 For Linux GeoProcessor `gptest` testing framework,
 the GeoProcessor is run in a virtual environment into which are installed necessary Python additional packages.
@@ -181,7 +191,7 @@ Therefore, install the following Python packages in the Linux system Python from
 | `mkdocs-material`     | MkDocs material theme.           | `pip3 install mkdocs-material` |
 | `virtualenv`          | Python virtual environment tool. | `pip3 install virtualenv`      |
 
-### ![Windows](../images/windows-32.png) Windows QGIS Development Environment ###
+#### ![Windows](../images/windows-32.png) Windows QGIS Development Environment ####
 
 The Windows QGIS development environment requires a number of additional packages
 that are used by the GeoProcessor and if not installed will result in import errors when running the GeoProcessor.
@@ -204,3 +214,136 @@ to install, by running `pip` within the correct Python version.
 | `mkdocs`              | MkDocs documentation software.   | `py -3.7 -m pip install mkdocs`          |
 | `mkdocs-material`     | MkDocs material theme.           | `py -3.7 -m pip install mkdocs-material` |
 | `virtualenv`          | Python virtual environment tool. | `py -3.7 -m pip install virtualenv`      |
+
+### Packages Needed by GeoProcessor ###
+
+The GeoProcessor uses some third-party Python packages that need to be installed using standard `pip` approach,
+described for Windows 10.
+
+#### Install in Python Virtual Environment ####
+
+Third party packages should be installed in a Python virtual environment (venv) as follows.
+For example, use this approach to install software in venv used by Python.
+
+1. In a Windows command prompt, change folders to the `venv/venv-qgis-3.10-python37\Scripts` folder.
+2. Activate the venv by running `activate.bat`.
+3. Install the packages listed in the following table.
+
+`pip` may complain with an error like the following:
+
+```
+python -m pip install openpyxl
+pip is configured with locations that require TLS/SSL, however the ssl module in Python is not available.
+Collecting openpyxl
+  Retrying (Retry(total=4, connect=None, read=None, redirect=None, status=None)) after connection broken by 'SSLError("Can't connect to HTTPS URL because the SSL module is not available.")': /simple/openpyxl/
+  Retrying (Retry(total=3, connect=None, read=None, redirect=None, status=None)) after connection broken by 'SSLError("Can't connect to HTTPS URL because the SSL module is not available.")': /simple/openpyxl/
+  Retrying (Retry(total=2, connect=None, read=None, redirect=None, status=None)) after connection broken by 'SSLError("Can't connect to HTTPS URL because the SSL module is not available.")': /simple/openpyxl/
+  Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'SSLError("Can't connect to HTTPS URL because the SSL module is not available.")': /simple/openpyxl/
+  Retrying (Retry(total=0, connect=None, read=None, redirect=None, status=None)) after connection broken by 'SSLError("Can't connect to HTTPS URL because the SSL module is not available.")': /simple/openpyxl/
+  Could not fetch URL https://pypi.org/simple/openpyxl/: There was a problem confirming the ssl certificate: HTTPSConnectionPool(host='pypi.org', port=443): Max retries exceeded with url: /simple/openpyxl/ (Caused by SSLError("Can't connect to HTTPS URL because the SSL module is not available.")) - skipping
+  Could not find a version that satisfies the requirement openpyxl (from versions: )
+No matching distribution found for openpyxl
+pip is configured with locations that require TLS/SSL, however the ssl module in Python is not available.
+Could not fetch URL https://pypi.org/simple/pip/: There was a problem confirming the ssl certificate: HTTPSConnectionPool(host='pypi.org', port=443): Max retries exceeded with url: /simple/pip/ (Caused by SSLError("Can't connect to HTTPS URL because the SSL module is not available.")) - skipping
+```
+
+This is because the venv Python does not include SSL.  Test on a Python installed on the system:
+
+```
+C:\>py
+Python 3.7.2 (tags/v3.7.2:9a3ffc0492, Dec 23 2018, 23:09:28) [MSC v.1916 64 bit (AMD64)] on win32
+Type "help", "copyright", "credits" or "license" for more information.
+>>> import ssl
+>>> quit()
+```
+
+Try the same using standalone `C:\Program Files\QGIS 3.10\apps\Python37`:
+
+```
+C:\Program Files\QGIS 3.10\apps\Python37>python
+Python 3.7.0 (v3.7.0:1bf9cc5093, Jun 27 2018, 04:59:51) [MSC v.1914 64 bit (AMD64)] on win32
+Type "help", "copyright", "credits" or "license" for more information.
+>>> import ssl
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+  File "C:\Program Files\QGIS 3.10\apps\Python37\lib\ssl.py", line 98, in <module>
+    import _ssl             # if we can't import it, let the error propagate
+ImportError: DLL load failed: The specified module could not be found.
+>>> quit()
+```
+
+And, on the GeoProcessor PyCharm project venv Python:
+
+```
+(venv-qgis-3.10-python37) C:\Users\sam\owf-dev\GeoProcessor\git-repos\owf-app-geoprocessor-python\venv\venv-qgis-3.10-python37\Scripts>python
+Python 3.7.0 (v3.7.0:1bf9cc5093, Jun 27 2018, 04:59:51) [MSC v.1914 64 bit (AMD64)] on win32
+Type "help", "copyright", "credits" or "license" for more information.
+>>> import ssl
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+  File "C:\Program Files\QGIS 3.10\apps\Python37\lib\ssl.py", line 98, in <module>
+    import _ssl             # if we can't import it, let the error propagate
+ImportError: DLL load failed: The specified module could not be found.
+>>> quit()
+```
+
+See the [bugs.python.org article](https://bugs.python.org/issue39344).
+Following this advice, copy from a personal Python 3.7 `AppData/Local/Programs/Python/Python7/` the files 
+`libcripto-1_1-x64.dll` and `libssl_1_1-64.dll` to the venv `Scripts` folder.
+Then get the following, indicating that `SSL` is loading:
+
+```
+(venv-qgis-3.10-python37) C:\Users\sam\owf-dev\GeoProcessor\git-repos\owf-app-geoprocessor-python\venv\venv-qgis-3.10-python37\Scripts>python
+Python 3.7.0 (v3.7.0:1bf9cc5093, Jun 27 2018, 04:59:51) [MSC v.1914 64 bit (AMD64)] on win32
+Type "help", "copyright", "credits" or "license" for more information.
+>>> import ssl
+>>> quit()
+```
+
+Then, install according to the table below.  After installing, the PyCharm ***Settings / Project / Project Interpreter*** package list will display the newly installed packages.
+
+**<p style="text-align: center;">
+Additional Python Packages for Virtual Environment
+</p>**
+
+|**Software Package Name**|**Source Link(s)**|**How Used Within GeoProcessor**| **Command**&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|
+|-|-|-|-|
+|pandas|[https://pandas.pydata.org/](https://pandas.pydata.org/)|Holds and manipulates Table data.<br>**May already be installed in QGIS Python - check Project Interpreter package list in Pycharm File / Settings.**|`python -m pip install pandas`|
+|OpenPyXL|[https://openpyxl.readthedocs.io/en/stable/](https://openpyxl.readthedocs.io/en/stable/)|Reads and writes Excel 2010 xlsx/xlsm files to and from Table objects.<br>**Does not seem to be installed with QGIS Python.** |`python -m pip install openpyxl`|
+|requests (extended package)|[http://docs.python-requests.org/en/master/](http://docs.python-requests.org/en/master/)<br><br> [https://pypi.org/project/requests/](https://pypi.org/project/requests/)|Downloads data files within the [`WebGet`](http://learn.openwaterfoundation.org/owf-app-geoprocessor-python-doc-user/command-ref/WebGet/WebGet/) command. <br><br>The `requests[security]` extension package is preferred over the core `requests` package to avoid an error that would occur when downloading a file over `https` with the [`WebGet`](http://learn.openwaterfoundation.org/owf-app-geoprocessor-python-doc-user/command-ref/WebGet/WebGet/) command. The error that occurred when using the core `requests` package printed:<br>`requests.exceptions.SSLError: [Errno 1] _ssl.c:503: error:140770FC:SSL routines:SSL23_GET_SERVER_HELLO:unknown protocol`. <br>This error does not occur when utilizing the `requests[security]` extension package.<br>**The `requests` package is installed with QGIS Python but not `requests[security]`, so install it.** | `python -m pip install requests[security]`|
+|SQLAlchemy|[http://www.sqlalchemy.org/](http://www.sqlalchemy.org/)|Enables connections to databases.<br>**Does not seem to be installed in QGIS Python.**|`python -m pip install SQLAlchemy`|
+|virtualenv|[https://virtualenv.pypa.io/en/latest/](https://virtualenv.pypa.io/en/latest/)|Used to package the GeoProcessor runtime into an isolated Python environment when [creating an installer](../dev-tasks/creating-installer.md).<br>**Does not seem to be installed in QGIS Python - is this why sometimes creating venv in Python does not work the first time?.**|`python -m pip install virtualenv`|
+
+#### Install in QGIS Python ####
+
+**This documentation is old and needs to be reviewed and updated.
+It is kept as a reminder.**
+
+The GeoProcessor uses some third-party packages.
+Previously, the development environment installed these packages in the QGIS Python.
+However, this approach is no longer taken in order to ensure that a user's QGIS environment
+is not changed unexpectedly by the GeoProcessor installation.
+Rather, the packages are installed in the development venv,
+which results in the packages being installed in `Lib/site-packages`.
+
+1. Open ***Start / QGIS 3.10 / OSGeo4W Shell*** (for standalone QGIS install) or
+***Start / OSGeo4W / OSGeo4W Shell*** (for OSGeo4W QGIS insall) to start an environment compatible with QGIS Python.
+Note that by default (as of 2019-01-20) the initial configuration will use Python 27
+This seems like something that will be remedied in the future, in which case the following instructions
+may need to be modified.
+See the article [OSGeo4W shell with python3](https://gis.stackexchange.com/questions/273870/osgeo4w-shell-with-python3).
+Therefore, once the shell is open, run `C:\OSGeo4W64\bin\py3_env.bat`.
+3. Enter the command to install the software package.
+Note that `python3 -m pip` is used instead of `pip3` because `pip3` is not available in the QGIS bin folder.
+
+**<p style="text-align: center;">
+Additional Python Packages for QGIS
+</p>**
+
+|**Software Package Name**|**Source Link(s)**|**How Used Within GeoProcessor**| **Command**&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|
+|-|-|-|-|
+|pandas|[https://pandas.pydata.org/](https://pandas.pydata.org/)|Holds and manipulates Table data.|`python3 -m pip install pandas`|
+|OpenPyXL|[https://openpyxl.readthedocs.io/en/stable/](https://openpyxl.readthedocs.io/en/stable/)|Reads and writes Excel 2010 xlsx/xlsm files to and from Table objects.|`python3 -m pip install openpyxl`|
+|requests (extended package)|[http://docs.python-requests.org/en/master/](http://docs.python-requests.org/en/master/)<br><br> [https://pypi.org/project/requests/](https://pypi.org/project/requests/)|Downloads data files within the [`WebGet`](http://learn.openwaterfoundation.org/owf-app-geoprocessor-python-doc-user/command-ref/WebGet/WebGet/) command. <br><br>The `requests[security]` extension package is preferred over the core `requests` package to avoid an error that would occur when downloading a file over `https` with the [`WebGet`](http://learn.openwaterfoundation.org/owf-app-geoprocessor-python-doc-user/command-ref/WebGet/WebGet/) command. The error that occurred when using the core `requests` package printed:<br>`requests.exceptions.SSLError: [Errno 1] _ssl.c:503: error:140770FC:SSL routines:SSL23_GET_SERVER_HELLO:unknown protocol`. <br>This error does not occur when utilizing the `requests[security]` extension package. | `python3 -m pip install requests[security]`|
+|SQLAlchemy|[http://www.sqlalchemy.org/](http://www.sqlalchemy.org/)|Enables connections to databases.|`python3 -m pip install SQLAlchemy`|
+|virtualenv|[https://virtualenv.pypa.io/en/latest/](https://virtualenv.pypa.io/en/latest/)|Used to package the GeoProcessor runtime into an isolated Python environment when [creating an installer](../dev-tasks/creating-installer.md).  **This only needs to be installed if the software developer will be building the Windows GeoProcessor installer using this Python.**|`python3 -m pip install virtualenv`|
