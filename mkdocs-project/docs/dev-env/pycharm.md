@@ -12,66 +12,59 @@
 
 ## Introduction ##
 
+This section provides background on using PyCharm for to develop the GeoProcessor.
+
 PyCharm is the Python integrated development environment tool that has been chosen by
 the Open Water Foundation for GeoProcessor development.
-Other developers may use other tools if they desire but such tools have not been investigated.
+Other developers may use other tools such as Eclipse/PyDev if they desire but such tools have not been evaluated
+by the Open Water Foundation.
 The PyCharm Community Edition is adequate for development.
 The GitHub repository for the project is used as the PyCharm project folder
 and PyCharm project files are ignored using `.gitignore`.
 This means that the developer must set up the PyCharm project themselves rather than
 relying on PyCharm project files in the repository.
-This approach has been chosen because it is the least prescriptive to the developer community
-and Python developers are expected to at least know how to set up a project in their development tool of choice.
+This approach has been chosen because:
+
+* Changes made to PyCharm files by one developer won't impact other developers.
+* It is the least prescriptive to the developer community, allowing different PyCharm configurations and use of other IDEs.
+* Developers are expected to at least know how to set up a project to gain an appreciation of project configuration.
+
+The following diagram illustrates how the PyCharm software is used with QGIS and Python (upper right part of diagram).
+
+**<p style="text-align: center;">
+![gp-python-config](images/gp-python-config.png)
+</p>**
+
+**<p style="text-align: center;">
+GeoProcessor / GGIS / Python Configuration (<a href="../images/gp-python-config.png">see full-size image</a>)
+</p>**
 
 The PyCharm IDE runs Python in the development environment,
 and therefore each project must be configured to know which Python interpreter to use.
 PyCharm is typically configured to use a Python version in the virtual environment folder (`venv`) that is
 set up when the GeoProcessor Python project is setup, as shown in the following figure.
-If a virtual environment is not set up, then the Python that was selected when
-the project was set up will be used (such as user's copy of Python).
-A virtual environment is recommended in order to better control development environment Python
-packages, which helps understand which packages are needed in the deployed system.
-The following image illustrates the interpreter installed in a generic `venv` folder,
-which is listed in the main `.gitignore` file.
+The following image illustrates the virtual environment naming convention used for GeoProcessor,
+in order avoid confusion about QGIS and Python version.
 
 **<p style="text-align: center;">
-![PyCharm interpreter](images/pycharm-settings-project-interpreter.png)
+![pycharm-settings-project-interpreter](images/pycharm-settings-project-interpreter.png)
 </p>**
 
 **<p style="text-align: center;">
-General Project Python Interpreter (<a href="../images/pycharm-settings-project-interpreter.png">see full-size image</a>)
+PyCharm Project Python Interpreter (<a href="../images/pycharm-settings-project-interpreter.png">see full-size image</a>)
 </p>**
 
-QGIS is distributed with Python for its run-time environment,
-rather than using the user's or computer's Python or PyCharm Python.
-The QGIS libraries must be made known to PyCharm in order for the GeoProcessor code to
-function without errors (see the [Script to Run PyCharm](#script-to-run-pycharm) section).
-The PyCharm virtual environment Python (3.x, consistent with QGIS) will be used for development.
-The Python environment used for PyCharm can use the QGIS Python if it is specified as the project interpreter, as shown below.
-However, the GeoProcessor is typically run in the development environment using the batch file `scripts/gpdev.bat` or `scripts/gpuidev.bat`.
-The following image illustrates the interpreter installed in a versioned `venv-qgis-python37` folder for clarity,
-which is listed in the main `.gitignore` file.
+The Python distributed with QGIS is used in development and deployed GeoProcessor environments,
+rather than using the user's or system Python.
+The Python to use is set by run scripts using the `PYTHONHOME` environment variables.
+QGIS, GeoProcessor, and third-party libraries are made known to PyCharm using the `PYTHONPATH` environment variables.
+A run script is used to run PyCharm (see the [Script to Run PyCharm](#script-to-run-pycharm) section).
+PyCharm when run from the ***Start*** menu will not have the benefit of such configuration and will not
+work for the GeoProcessor development.
 
-**<p style="text-align: center;">
-![PyCharm interpreter](images/pycharm-settings-project-interpreter-qgis.png)
-</p>**
-
-**<p style="text-align: center;">
-QGIS Project Python Interpreter (<a href="../images/pycharm-settings-project-interpreter-qgis.png">see full-size image</a>)
-</p>**
-
-The QGIS Python can be used in a deployed environment, as long as the GeoProcessor module (`geoprocessor`) is
-installed in QGIS `site-packages` folder or `PYTHONPATH` includes the GeoProcessor module.
-Using the QGIS environment as much as possible helps ensure that there are no compatibility issues with the QGIS software,
-which is important because much of the GeoProcessor processing is performed with QGIS tools.
 The GeoProcessor is normally distributed using a Python virtual environment so that users don't
 have to install any Python or other software.
 See the [Development Tasks / Creating Installer](../dev-tasks/creating-installer.md) documentation.
-
-To run QGIS software, PyCharm and applications that use QGIS (including the GeoProcessor),
-it is best to use a batch file (Windows) or shell script (Linux).
-This ensures that the correct version of Python and additional Python modules are properly configured.
-This is discussed in the [Script to Run PyCharm](#script-to-run-pycharm) section.
 
 ## Alternatives to PyCharm ##
 
@@ -79,8 +72,9 @@ The PyCharm Community Edition is used for GeoProcessor development at the Open W
 However, other developers may prefer to use other Python development tools.
 Keep the following in mind:
 
-1. This Developer Documentation has been developed assuming that PyCharm is used.
-Using other tools would require similar configuration.
+1. This Developer Documentation has been created assuming that PyCharm is used.
+Using other tools will require similar configuration.
+This documentation can be updated with examples for other tools.
 2. PyCharm project files are omitted from the repository using the main `.gitignore` file.
 Implementing other development environment tools should also take care to omit developer-specific and
 dynamic files from the repository.
@@ -89,13 +83,13 @@ dynamic files from the repository.
 
 ## Install PyCharm ##
 
-Install the PyCharm 64-bit Community Edition:
+This section describes how to install the PyCharm 64-bit Community Edition:
 
-* [PyCharm Download page](https://www.jetbrains.com/pycharm/download/#section=windows) - select Windows
-* The installer has the option of creating a desktop shortcut.  Do this for 64-bit launcher.
-* It is not necessary to associate `.py` files with PyCharm, but also OK to make the association.
-* Otherwise, accept the defaults.
-* The installer appears to be intelligent enough to carry forward configuration information from previous installations of PyCharm.
+1. Download a recent PyCharm Community Edition from the [PyCharm Download page](https://www.jetbrains.com/pycharm/download/#section=windows) - select Windows
+2. The installer has the option of creating a desktop shortcut.  Do this for 64-bit launcher.
+3. It is not necessary to associate `.py` files with PyCharm, but also OK to make the association.
+4. Otherwise, accept the defaults.
+5. The installer appears to be intelligent enough to carry forward configuration information from previous installations of PyCharm.
 
 This will install PyCharm into a folder similar to `C:\Program Files\JetBrains\PyCharm Community Edition 2018.1.2`
 (new versions are released periodically).
@@ -103,33 +97,43 @@ Once installed the software may periodically ask to install updates.
 Doing so does not appear to change the original install folder (even if the version changes)...updates seem
 to install in the same folder.
 It may be that an update only creates a new folder for a new year.
-See the next section for information about running PyCharm with configuration that uses QGIS Python.
+See the next section for information about running PyCharm with a
+run script that uses a configuration for QGIS and GeoProcessor development.
 
 ## Script to Run PyCharm ##
 
-As indicated in previous sections, it is necessary to use the QGIS Python and packages in order to use the QGIS functionality.
+As indicated in previous sections, it is necessary to use the QGIS Python and modules in the GeoProcessor.
 PyCharm must also use QGIS Python interpreter and packages in order to allow for code inspection and module imports.
-Therefore, a batch file or script can be used to configure the environment and run PyCharm.
-This script must recognize the install location of PyCharm software, which may be different for each developer.
-To start PyCharm, run one of the following scripts, with location shown relative to the project files once
-cloned from the repository (explained in the [New Developer](../dev-new/dev-new.md) section):
+Therefore, a batch file (Windows) and script (Linux) is used to configure the environment and run PyCharm.
+To start PyCharm, run one of the following scripts,
+located in the `build-util/` folder in the repository.
 
-* Windows (via command prompt window):
-	+ [owf-app-geoprocessor-python/build-util/run-pycharm-ce-for-qgis.bat](https://github.com/OpenWaterFoundation/owf-app-geoprocessor-python/blob/master/build-util/run-pycharm-ce-for-qgis.bat) - run
-	PyCharm Community Edition installed in the standard location - the most recent PyCharm version found will be run
-	+ Other scripts may be added to run other versions of PyCharm or other tools
-* Linux (via terminal window):
-	+ PyCharm is currently not used in Linux for development but will be tested in the future.
+**<p style="text-align: center;">
+Scripts and Batch Files to Run PyCharm
+</p>**
+
+| **Windows Batch File**&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | **Linux Script** | **Description** |
+| -- | -- | -- |
+| `run-pycharm-ce-for-qgis.bat` | None yet | Searches for recent Pycharm Community Edition version to run, configures the environment for QGIS and GeoProcessor development Python, and starts PyCharm. |
 
 ## Configure PyCharm ##
 
 After installing PyCharm, a few additional configuration changes should be made:
 
-1. Change the Python docstring format.
-Google docstring format has been selected due to simplicity  To configure,
-use the ***File / Settings*** menu, then ***Tools / Python Integrated Tools***.
-Then change ***Docstrings / Docstring format:*** to ***Google***.
-The ***Analyze Python code in docstrings*** choice should be checked.
+* Previously, Google docstring format was used as a standard
+(configured in ***File / Settings*** and then ***Tools / Python Integrated Tools / Docstrings***.
+However, the default docstring format is now used, which uses the format:
+
+```
+Args:
+    some_arg(str):  Description
+
+Returns:
+    str:  Property value or None if not found.
+
+Raises:
+    RuntimeError: If there was a logic error.
+```
 
 ## Update PyCharm ##
 
@@ -143,6 +147,11 @@ This does not seem to be an issue.
 The [script to run PyCharm](#script-to-run-pycharm) checks for multiple PyCharm version and runs the latest found installed version.
 
 ## Update PyCharm to use New Python ##
+
+**This documentation needs to be updated.
+The current convention for GeoProcessor development is to use a Python virtual environement configuration and
+corresponding name that is specific enough that it should not be updated.
+If necessary, a new virtual environment can be configured with corresponding name that reflects QGIS and Python version.**
 
 It may be necessary to update the Python that is used in PyCharm,
 for example if a new version of QGIS is installed.

@@ -11,3 +11,6 @@ The Git features of PyCharm or other Git client can also be used.
 
 The GeoProcessor project uses a "feature branch" workflow where the `master` branch is the current branch under development,
 with tags and stable release branches made as necessary for releases.
+
+The GeoProcessor version uses `dev` to indicate a version that is under development,
+for example `1.3.0.dev`.  The version will be changed to not have trailing `.dev` when the software is ready for release.
