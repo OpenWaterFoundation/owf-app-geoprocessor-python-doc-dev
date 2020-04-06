@@ -2,8 +2,10 @@
 
 This documentation provides resources to learn how to develop the
 Open Water Foundation (OWF) GeoProcessor software,
-which automates processing spatial data.
-See also the [GeoProcessor download website](http://software.openwaterfoundation.org/geoprocessor/).
+which automates processing spatial data.  See also:
+
+* Latest [GeoProcessor User Documentation](http://software.openwaterfoundation.org/geoprocessor/latest/doc-user/)
+* [GeoProcessor download website](http://software.openwaterfoundation.org/geoprocessor/)
 
 **The GeoProcessor software is under development as an open source software project at the Open Water Foundation.
 Although significant progress has been made, it is expected that significant changes may occur in the

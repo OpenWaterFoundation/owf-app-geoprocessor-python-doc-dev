@@ -127,7 +127,7 @@ if [ -n "${version}" ]; then
 	fi
 fi
 
-read -p "Also copy documentation to 'latest' [y/n]? " answer
+read -p "Also copy documentation to 'latest' [y/n/q]? " answer
 exitStatusLatest=0
 if [ "${answer}" = "y" ]; then 
 	echo "Uploading documentation to:  ${s3LatestFolder}"
