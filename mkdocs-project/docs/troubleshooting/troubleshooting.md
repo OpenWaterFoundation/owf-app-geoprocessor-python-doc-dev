@@ -1,10 +1,24 @@
 # GeoProcessor / Troubleshooting #
 
-The GeoProcessor is a Python application that uses Python modules developed as part of the GeoProcessor,
-and Python modules and software that are part of the QGIS software.
+The GeoProcessor is a Python application that uses Python modules that are a part of the GeoProcessor,
+and Python modules and software that are part of the QGIS (PyQGIS) and Qt (PyQt) software.
 Consequently, errors can occur in various software components.
+This page provides information about troubleshooting the GeoProcessor.
 
-## Log File ##
+* [Logging](#logging)
+	+ [Log File](#log-file)
+	+ [Command Status/Log](#command-statuslog)
+* [GeoProcessor Runtime Error Messages](#geoprocessor-runtime-error-messages)
+
+-------------
+
+## Logging ##
+
+The GeoProcessor uses the Python `logging` package to log messages to a log file.
+Additionally, each command has a log that is used to display command-specific messages.
+The following sections describe logging.
+
+### Log File ###
 
 The GeoProcessor uses the Python logging features to create a log file that is helpful to troubleshoot issues.
 However, although log files may be helpful to software developers, they can be difficult for others to understand.
@@ -52,7 +66,7 @@ INFO|geoprocessor|gp line 190|UserHomeDirURL = file:///C:/Users/sam
 INFO|geoprocessor|gp line 190|ProgramVersionNumber = None
 ```
 
-## Command Status/Log ##
+### Command Status/Log ###
 
 The GeoProcessor UI displays command-specific warning messages,
 which indicate problems that need to be resolved.
@@ -61,3 +75,46 @@ by right-clicking on a command and using the ***Show Command Status*** menu or m
 
 The current log file can be viewed using the ***Tools / View Log File*** menu.
 The startup log file can be viewed using the ***Tools / View Startup Log File*** menu.
+
+## GeoProcessor Runtime Error Messages ##
+
+Error messages for GeoProcessor commands generally indicate how to fix issues,
+such as correcting command parameters.
+However, programming logic errors or other unforseen issues may result in
+stack traces that are difficult to troubleshoot.
+The following lists errors that have been encountered.
+
+### Error Message: `ImportError: DLL load failed: The specified procedure could not be found.`
+
+The following error may be shown and result in GeoProcessor not starting.
+The cause has been shown to be a bad or incompatible DLL.
+For example, manually copying DLLs so that `pip` can run and not have `SSL` issues caused this problem.
+The solution is to remove the offending DLLs.
+
+* See the [Development Environment / Python / Install Additional Python Packages / Troubleshooting](../dev-env/python.md#troubleshooting) documentation.
+
+```
+Traceback (most recent call last):
+  File "C:\PROGRA~1\QGIS3~1.10\apps\Python37\lib\runpy.py", line 193, in _run_module_as_main
+    "__main__", mod_spec)
+  File "C:\PROGRA~1\QGIS3~1.10\apps\Python37\lib\runpy.py", line 85, in _run_code
+    exec(code, run_globals)
+  File "C:\Users\sam\gp-1.3.0.dev-win-qgis-3.10-venv\Lib\site-packages\geoprocessor\app\gp.py", line 39, in <module>
+    from geoprocessor.commands.testing.StartRegressionTestResultsReport import StartRegressionTestResultsReport
+  File "C:\Users\sam\gp-1.3.0.dev-win-qgis-3.10-venv\Lib\site-packages\geoprocessor\commands\testing\StartRegressionTestResultsReport.py", line 31, in <module>
+    import geoprocessor.util.validator_util as validator_util
+  File "C:\Users\sam\gp-1.3.0.dev-win-qgis-3.10-venv\Lib\site-packages\geoprocessor\util\validator_util.py", line 27, in <module>
+    import ogr
+  File "C:\Program Files\QGIS 3.10\apps\Python37\Lib\site-packages\ogr.py", line 2, in <module>
+    from osgeo.gdal import deprecation_warn
+  File "C:\Program Files\QGIS 3.10\apps\Python37\Lib\site-packages\osgeo\__init__.py", line 41, in <module>
+    _gdal = swig_import_helper()
+  File "C:\Program Files\QGIS 3.10\apps\Python37\Lib\site-packages\osgeo\__init__.py", line 24, in swig_import_helper
+    _mod = imp.load_module('_gdal', fp, pathname, description)
+  File "C:\PROGRA~1\QGIS3~1.10\apps\Python37\lib\imp.py", line 243, in load_module
+    return load_dynamic(name, filename, file)
+  File "C:\PROGRA~1\QGIS3~1.10\apps\Python37\lib\imp.py", line 343, in load_dynamic
+    return _load(spec)
+ImportError: DLL load failed: The specified procedure could not be found.
+Exiting gp.bat with exit code 1
+```

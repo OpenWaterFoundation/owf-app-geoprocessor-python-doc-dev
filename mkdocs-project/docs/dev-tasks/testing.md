@@ -26,7 +26,7 @@ Anything that breaks in the technology stack or test configuration will result i
 which effectively implements tests at a larger scope than code unit tests.
 The GeoProcessor testing framework can also be used to test other software,
 for example by using
-[`RunProgram`](http://learn.openwaterfoundation.org/owf-app-geoprocessor-python-doc-user/command-ref/RunProgram/RunProgram/)
+[`RunProgram`](http://software.openwaterfoundation.org/geoprocessor/latest/doc-user/command-ref/RunProgram/RunProgram/)
 commands.
 
 Functional tests are saved in the
