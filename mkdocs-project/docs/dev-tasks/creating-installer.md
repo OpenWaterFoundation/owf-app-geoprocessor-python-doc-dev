@@ -159,12 +159,12 @@ GeoProcessor from the development files, for example:
 The results of running tests in the development should be the same as in the deployed environment.
 If not, there may be a compatibility issue between the environments that needs to be resolved.
 6. **Upload the installer** to the [OWF GeoProcessor Download page](http://software.openwaterfoundation.org/geoprocessor/).
-	1. Run the `build-util/3-copy-gp-win-to-amazon-s3.sh` script to upload the latest Windows installer.
-	2. Run the `build-util/3-copy-gp-to-amazon-s3.sh` script to upload a Cygwin/Linux version and update the
-	catalog file - this is necessary because the Windows batch file above does not create the catalog file or `index.html` file.
-	This script, when run on Cygwin, will also update the Windows installer zip file.
-	Therefore, prepare the Windows installer file first and then process the Cygwin installer.
-	**Need to fix this so that only Windows installer can be uploaded - split out the catalog file code into a separate script.**
+	1. Using Cygwin, run the `build-util/3-copy-gp-win-to-amazon-s3.sh` script to upload the latest installers
+	that match the current code GeoProcessor version.
+		* This script runs the `build-util/create-s3-gp-index.bash` script to update the download page
+		based on installers that have been uploaded.
+	2. The `build-util/create-s3-gp-index.bash` script can also be run independently
+	to update the GeoProcessor download page.
 7. **Test the installer and installed GeoProcessor**.  Download the Windows installer from the
 	[GeoProcessor Downloads](http://software.openwaterfoundation.org/geoprocessor/) page.
 	1. Then run the `Scripts\gp.bat` or `Scripts\gpui.bat` batch file.
