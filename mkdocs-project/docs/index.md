@@ -8,23 +8,19 @@ which automates processing spatial data.  See also:
 * [GeoProcessor download website](http://software.openwaterfoundation.org/geoprocessor/)
 
 **The GeoProcessor software is under development as an open source software project at the Open Water Foundation.
-Although significant progress has been made, it is expected that significant changes may occur in the
-near future as primary features are added.**
+Although significant progress has been made, it is expected that significant changes will occur in the
+near future as new features are added.**
 
-This documentation is intended for GeoProcessor developers that have (or would like to develop) experience with Python,
+This documentation is intended for GeoProcessor developers that have (or would like to acquire) experience with Python,
 QGIS Python libraries, and Python development environment.
-The PyCharm Community Edition software is used by the Open Water Foundation as the Integrated Development Environment (IDE),
+The Open Water Foundation uses PyCharm Community Edition software as the Integrated Development Environment (IDE),
 although other tools could be used.
 PyCharm project files are not included in the repository and it should be possible to use other development tools.
 
-The primary development environment at the Open Water Foundation
-is currently Windows 10 using the latest stable QGIS 3.x release.
-The primary deployment environments are Windows 10, Cygwin, and Ubuntu/Debian Linux.
-A QGIS-based `gp` distribution is available on Windows for geospatial processing.
-
-A non-QGIS `gptest` distribution was also created
-in order to use the GeoProcessor workflow as a function test framework.
-However, this effort is likely to be downscaled as effort focuses on the main GeoProcessor product.
+The primary development environment
+is currently Windows 10 using recent stable standalone QGIS 3.x release.
+The primary deployment environments are Windows 10, Cygwin, and Ubuntu/Debian Linux,
+with Windows currently being the focus.
 
 ## About the Open Water Foundation ##
 
@@ -50,7 +46,7 @@ The navigation menus may not be displayed if the web browser window is narrow or
 in which case look for a menu icon to access the menus.
 Use the search feature to find documentation matching the search words.
 
-See also the [OWF GeoProcessor documentation for users](http://software.openwaterfoundation.org/geoprocessor/latest/doc-user/),
+See also the [OWF GeoProcessor User Documentation](http://software.openwaterfoundation.org/geoprocessor/latest/doc-user/),
 which provides documentation for installing and using the GeoProcessor.
 
 Significant development may have occurred that is not reflected in the latest published documentation.
