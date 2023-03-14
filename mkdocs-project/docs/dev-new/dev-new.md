@@ -1,31 +1,32 @@
 # GeoProcessor / New Developer #
 
-This documentation explains how new developers can set up the development environment for the GeoProcessor software.
-The Open Water Foundation focuses on developing the GeoProcessor on Windows 10,
+This documentation explains how to set up a new development environment for the GeoProcessor software.
+The Open Water Foundation focuses on developing the GeoProcessor on Windows 11 and 10,
 with additional testing on other operating systems.
-The following information focuses on Windows 10, with other operating systems described if they have been
+The following information focuses on Windows 11 and 10, with other operating systems described if they have been
 used in development at OWF.
+Documentation sections are updated as new computers are configured.
 The development environment should be set up for each of the following software components.
 Additional information for each tool is discussed in the [Development Environment](../dev-env/overview.md) section.
 
 1. [Overview](#overview)
 2. [Create Folders for Development](#create-folders-for-development)
 3. [Install software](#install-software):
-	1. [QGIS](#install-qgis) - provides PyQGIS Python library, QGIS UI, and command line tools
-	2. [Python](#install-python) - used by GeoProcessor
-	3. [PyCharm](#install-pycharm) - integrated development environment (IDE)
-	4. [MkDocs](#install-mkdocs) - to create this documentation
-	5. [Git](#install-git) - for version control
-	6. [Cygwin](#install-cygwin) - used to automate tasks
+    1. [QGIS](#install-qgis) - provides PyQGIS Python library, QGIS UI, and command line tools
+    2. [Python](#install-python) - used by GeoProcessor
+    3. [PyCharm](#install-pycharm) - integrated development environment (IDE)
+    4. [MkDocs](#install-mkdocs) - to create this documentation
+    5. [Git](#install-git) - for version control
+    6. [Cygwin](#install-cygwin) - used to automate tasks
 4. [Setup GeoProcessor PyCharm Project](#setup-geoprocessor-pycharm-project) - the GeoProcessor code, tests, and documentation
-	1. [Clone Repositories](#clone-repositories)
-	2. [Start PyCharm](#start-pycharm)
-	3. [Create New PyCharm Project](#create-new-pycharm-project)
-	4. [Restart PyCharm using Run Script](#restart-pycharm-using-run-script)
-	5. [Install Additional Python Packages](#install-additional-python-packages)
+    1. [Clone Repositories](#clone-repositories)
+    2. [Start PyCharm](#start-pycharm)
+    3. [Create New PyCharm Project](#create-new-pycharm-project)
+    4. [Restart PyCharm using Run Script](#restart-pycharm-using-run-script)
+    5. [Install Additional Python Packages](#install-additional-python-packages)
 5. [Run the GeoProcessor](#run-the-geoprocessor)
-	1. [Run with `gpdev.bat` Batch File](#run-with-gpdevbat-batch-file)
-	2. [Run in PyCharm](#run-in-pycharm)
+    1. [Run with `gpdev.bat` Batch File](#run-with-gpdevbat-batch-file)
+    2. [Run in PyCharm](#run-in-pycharm)
 6. [Develop software as per Development Tasks](#develop-software-as-per-development-tasks)
 
 -----------------
@@ -98,6 +99,7 @@ GeoProcessor / QGIS / Python Versions
 | **GeoProcessor Version** | **QGIS Version** | **Python Version** | **PyCharm Venv** | **Deployed Folder** |
 | -- | -- | -- | -- | -- |
 | 1.3.x | 3.10 | 3.7 | `venv/venv-qgis-3.10-python37` | `gp-1.3.x-win-qgis-3.10-venv` |
+| 1.4.x | 3.26.3 | 3.9 | `venv/venv-qgis-3.26.3-python39` | `gp-1.4.x-win-qgis-3.26.3-venv` |
 
 Older versions of GeoProcessor are obsolete and are not important.
 GeoProcessor 1.3 includes significant changes necessary to make the development
@@ -111,12 +113,13 @@ See the following documentation for information about installing QGIS:
 
 Multiple Python are typically installed as follows, if not already installed:
 
-* Python 3.7 (or similar, depending on standalone QGIS version - determined from `PYTHONHOME` after running QGIS `py3_env.bat` setup batch file)
-installed **with QGIS**, which will be used to initialize the Pycharm virtual environments:
-	+ For PyCharm development virtual environment.
-	+ For deployed virtual environment.
-* Standard Python installation (typically the same version or close version to QGIS version),
-used for MkDocs documentation.
+*   Python 3.7 (or similar, depending on standalone QGIS version - determined from `PYTHONHOME`
+    after running QGIS `py3_env.bat` setup batch file, for QGIS prior to 3.20)
+    installed **with QGIS**, which will be used to initialize the Pycharm virtual environments:
+    + For PyCharm development virtual environment.
+    + For deployed virtual environment.
+*   Standard Python installation (typically the same version or close version to QGIS version),
+    used for MkDocs documentation.
 
 See the following for information about installing Python:
 
@@ -126,7 +129,7 @@ See the following for information about installing Python:
 
 The PyCharm Community Edition integrated development (IDE) environment is used by the
 Open Water Foundation to develop the GeoProcessor and is recommended for development.
-Other IDEs such as Ecplipse/PyDev may work but have not been tested.
+Other IDEs such as Eclipse/PyDev may work but have not been tested.
 
 Using a PyCharm Python virtual environment is recommended for development to isolate GeoProcessor Python from the system/user Python.
 The Python virtual environment should use a Python version consistent with QGIS as the base interpreter for the
@@ -179,7 +182,7 @@ the GeoProcessor repositories can be cloned and PyCharm project can be created f
 as explained in the following sections.
 
 If necessary, a PyCharm project can be re-created multiple times in order to fix previous configuration issues
-or add new configuations.
+or add new configurations.
 Make sure to commit to the Git repository or otherwise back up recent work.
 If the project is configured consistent with this documentation and run scripts are used to start
 PyCharm, run the GeoProcessor, and create installers, there should be few issues.
@@ -217,14 +220,14 @@ The following describes how to clone repositories into a new project.
 Do not change the name of the repository when cloning because development
 environment tools depend on the folder name matching the repository name.
 
-1. Create a folder inclusive of the `git-repos` level, for example `C:\Users\user\owf-dev\GeoProcesor\git-repos`).
-**Development environment scripts use `hashbang` (`#!`) paths that are limited to 127 characters.
-If this limit is exceeded on a computer, use a shorter product-level
-folder indicated above, such as `GP` rather than `GeoProcessor`, which may require re-initializing development environment files.
-This may not be an obvious problem until running scripts in the testing framework.**
-2. Clone the code component repository into `git-repos` folder as `owf-app-geoprocessor-python`.
-3. Run the `build-util/git-clone-all-gp.sh` script to clone the other repositories
-(repositories that already exist won't be re-cloned).
+1.  Create a folder inclusive of the `git-repos` level, for example `C:\Users\user\owf-dev\GeoProcesor\git-repos`).
+    **Development environment scripts use `hashbang` (`#!`) paths that are limited to 127 characters.
+    If this limit is exceeded on a computer, use a shorter product-level
+    folder indicated above, such as `GP` rather than `GeoProcessor`, which may require re-initializing development environment files.
+    This may not be an obvious problem until running scripts in the testing framework.**
+2.  Clone the code component repository into `git-repos` folder as `owf-app-geoprocessor-python`.
+3.  Run the `build-util/git-clone-all-gp.sh` script to clone the other repositories
+    (repositories that already exist won't be re-cloned).
 
 The `owf-app-geoprocessor-arcpy` project relies on Esri's ArcGIS Pro and is not needed for the QGIS GeoProcessor.
 Additional information will be added later for the ArcGIS Pro version of the GeoProcessor.

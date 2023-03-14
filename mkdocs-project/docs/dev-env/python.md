@@ -2,19 +2,19 @@
 
 This documentation describes how to install Python software and third party packages.
 
-* [Introduction](#introduction)
-* [Install Python](#install-python)
-	+ [QGIS Python](#qgis-python) - installs when QGIS is installed
-	* [Development Environment Virtual Environment Python](#development-environment-virtual-environment-python) - when PyCharm project is created
-	+ [System/User Python](#systemuser-python) - needed for MkDocs documentation
-	* [GeoProcessor Deployed Virtual Environment Python](#geoprocessor-deployed-virtual-environment-python) - when installer is created
-* [Install Additional Python Packages](#install-additional-python-packages)
-	* [QGIS Python Additional Packages](#qgis-python-additional-packages) - when QGIS is installed/updated
-	* [Development Environment Virtual Environment Additional Packages](#development-environment-virtual-environment-additional-packages) - when PyCharm project is created
-	* [System/User Python Additional Packages](#systemuser-python-additional-packages) - needed for MkDocs documentation
-	* [GeoProcessor Deployed Virtual Environment Additional Packages](#geoprocessor-deployed-virtual-environment-additional-packages) - when installer is created
-	* [Troubleshooting](#troubleshooting) - for example, pip SSL issues
-* [Resources](#resources)
+*   [Introduction](#introduction)
+*   [Install Python](#install-python)
+    +   [QGIS Python](#qgis-python) - installs when QGIS is installed
+    +   [Development Environment Virtual Environment Python](#development-environment-virtual-environment-python) - when PyCharm project is created
+    +   [System/User Python](#systemuser-python) - needed for MkDocs documentation
+    +   [GeoProcessor Deployed Virtual Environment Python](#geoprocessor-deployed-virtual-environment-python) - when installer is created
+*   [Install Additional Python Packages](#install-additional-python-packages)
+    +   [QGIS Python Additional Packages](#qgis-python-additional-packages) - when QGIS is installed/updated
+    +   [Development Environment Virtual Environment Additional Packages](#development-environment-virtual-environment-additional-packages) - when PyCharm project is created
+    +   [System/User Python Additional Packages](#systemuser-python-additional-packages) - needed for MkDocs documentation
+    +   [GeoProcessor Deployed Virtual Environment Additional Packages](#geoprocessor-deployed-virtual-environment-additional-packages) - when installer is created
+    +   [Troubleshooting Installing Additional Python Packages](#troubleshooting-installing-additional-python-packages) - for example, pip SSL issues
+*   [Resources](#resources)
 
 -----------
 
@@ -169,9 +169,9 @@ The version should be as near as possible to that used by QGIS, at least to the 
 (see the [Development Environment / QGIS](qgis.md) documentation.
 If necessary, install QGIS first to confirm the Python version that is used.  See:
 
-* [GeoProcessor Development Environment / QGIS](qgis.md)
-* [Python Releases for Windows](https://www.python.org/downloads/windows/)
-* [Open Water Foundation / Learn Python](http://learn.openwaterfoundation.org/owf-learn-python/dev-env/python/python/)
+*   [GeoProcessor Development Environment / QGIS](qgis.md)
+*   [Python Releases for Windows](https://www.python.org/downloads/windows/)
+*   [Open Water Foundation / Learn Python](http://learn.openwaterfoundation.org/owf-learn-python/dev-env/python/python/)
 
 ### GeoProcessor Deployed Virtual Environment Python ###
 
@@ -182,14 +182,17 @@ See the [Development Tasks / Creating Installer](../dev-tasks/creating-installer
 
 After installing Python in one of the instances listed in the [Introduction](#introduction) section,
 it is necessary to install additional Python packages that enable necessary functionality in Python environment.
-The packages that are required vary depending on the Python installation's role in the GeoProcessor development and
-deployment life cycle.  Where possible, such as when creating the GeoProcessor installer,
-the installation of packages is automated.
+The packages that are required vary depending on the Python installation's role in the GeoProcessor development and deployment life cycle.
+Where possible, such as when creating the GeoProcessor installer, the installation of packages is automated.
+
+**Install additional packages after installing the necessary software.
+For example, install QGIS as per the main installation steps and then install its 
+additional Python packages using the following documentation.**
 
 ### QGIS Python Additional Packages ###
 
 The GeoProcessor uses some third-party packages.
-Most of these packages are installed in the development virtual environment and the deployed virtual environment
+Most of these packages are installed in the development (PyCharm) virtual environment and the deployed virtual environment
 so that the original QGIS Python environment is not impacted.
 
 However, because the QGIS Python instance is used to create the development and deployed Python virtual environment instances,
@@ -201,28 +204,30 @@ The following describes how to install additional Python packages in QGIS Python
 Because standalone QGIS is installed into `C:\Program Files\QGIS 3.10` (or similar) with administrator privileges,
 additional packages must also be installed with administrator privileges.
 
-1. Open ***Start / QGIS 3.10 / OSGeo4W Shell*** (for standalone QGIS install) or
-***Start / OSGeo4W / OSGeo4W Shell*** (for OSGeo4W QGIS install) to start an environment compatible with QGIS Python:
-	* **If OSGeo4W Shell can be run as Administrator** - Ideally it should be possible to right-click on the menu and then do ***More / Run as administrator...*** (or similar).
-	If this is not available, use the next option described below.
-	* **If OSGeo4W Shell cannot be run as Administrator** - More steps are required, described for standalone QGIS 3.10:
-		1. The ***Start / QGIS 3.10 / OSGeo4W Shell*** menu item is a shortcut to the following
-		location:  `C:\ProgramData\Microsoft\Windows\Start Menu\Programs\QGIS 3.10`,
-		which can be determined by right-clicking on the menu item and selecting ***More / Open file location***.
-		2. Then right-click on the `OSGeo4W Shell` shortcut and select ***Properties***.
-		The ***Shortcut*** tab will show a target similar to `C:\Program Files\QGIS 3.10\OSGeo4W.bat`.
-		3. Because this is a batch file, it can be run in a `cmd` shell that is run as administrator.
-		Thefore, use the ***Start / Windows System / Command Prompt*** menu with right-click ***More / Run as administrator...***
-		to start a command shell running with administrative privileges.
-		4. In the ***Command Prompt*** window, change to the `C:\Program Files\QGIS 3.10` folder (or version of interest).
-		5. Run the `OSGeo4W.bat` batch file.
-		Running the `set` command afterwards should list environment variables such as `OSGEO4W_ROOT`,
-		indicating that the shell has been configured for QGIS.
-2. Change to the `C:\Program Files\QGIS 3.10\apps\Python37` (or similar) folder.
-This is necessary because Python is not in the `PATH` at this point.
-Use `where python` to confirm which Python will be found.
-3. Install the Python package(s) indicated in the following table.
-If errors occur such as `pip` requiring SSL, see the [Troubleshooting](#troubleshooting) section.
+**The following instructions are for QGIS 3.10 but other versions are similar.**
+
+1.  Open ***Start / QGIS 3.10 / OSGeo4W Shell*** (for standalone QGIS install) or
+    ***Start / OSGeo4W / OSGeo4W Shell*** (for OSGeo4W QGIS install) to start an environment compatible with QGIS Python:
+    *   **If OSGeo4W Shell can be run as Administrator** - Ideally it should be possible to right-click on the menu and then do ***More / Run as administrator...*** (or similar).
+        If this is not available, use the next option described below.
+    *  **If OSGeo4W Shell cannot be run as Administrator** - More steps are required, described for standalone QGIS 3.10:
+        1.  The ***Start / QGIS 3.10 / OSGeo4W Shell*** menu item is a shortcut to the following
+            location:  `C:\ProgramData\Microsoft\Windows\Start Menu\Programs\QGIS 3.10`,
+            which can be determined by right-clicking on the menu item and selecting ***More / Open file location***.
+        2.  Then right-click on the `OSGeo4W Shell` shortcut and select ***Properties***.
+            The ***Shortcut*** tab will show a target similar to `C:\Program Files\QGIS 3.10\OSGeo4W.bat`.
+        3.  Because this is a batch file, it can be run in a `cmd` shell that is run as administrator.
+            Thefore, use the ***Start / Windows System / Command Prompt*** menu with right-click ***More / Run as administrator...***
+            to start a command shell running with administrative privileges.
+        4.  In the ***Command Prompt*** window, change to the `C:\Program Files\QGIS 3.10` folder (or version of interest).
+        5.  Run the `OSGeo4W.bat` batch file.
+            Running the `set` command afterwards should list environment variables such as `OSGEO4W_ROOT`,
+            indicating that the shell has been configured for QGIS.
+2.  Change to the `C:\Program Files\QGIS 3.10\apps\Python37` (or similar) folder.
+    This is necessary because Python is not in the `PATH` at this point.
+    Use `where python` to confirm which Python will be found.
+3.  Install the Python package(s) indicated in the following table.
+    If errors occur such as `pip` requiring SSL, see the [Troubleshooting Installing Additional Python Packages](#troubleshooting-installing-additional-python-packages) section.
 
 **<p style="text-align: center;">
 Additional Packages for QGIS Python
@@ -243,13 +248,13 @@ however, doing so on the command line is more efficient and can be automated.
 
 The following describes how to install additional packages and typically needs to occur only when setting up a new PyCharm project.
 
-1. In a Windows command prompt, change to the `venv/venv-qgis-3.10-python37\Scripts` folder
-(or similar, depending on versions being used).
-2. Activate the venv by running `activate.bat`.
-3. Install the packages listed in the following table.
-If errors result, such as Python SSL error, see the [Troubleshooting](#troubleshooting) section.
-4. Deactivate the venv by running `deactivate.bat`.
-5. Close the command prompt window.
+1.  In a Windows command prompt, change to the `venv/venv-qgis-3.10-python37\Scripts` folder
+    (or similar, depending on versions being used).
+2.  Activate the venv by running `activate.bat`.
+3.  Install the packages listed in the following table.
+    If errors result, such as Python SSL error, see the [Troubleshooting Installing Additional Python Packages](#troubleshooting-installing-additional-python-packages) section.
+4.  Deactivate the venv by running `deactivate.bat`.
+5.  Close the command prompt window.
 
 After installing, the PyCharm ***Settings / Project / Project Interpreter*** package list will display the newly installed packages.
 
@@ -263,7 +268,7 @@ Additional Python Packages for Development Virtual Environment
 |OpenPyXL|[https://openpyxl.readthedocs.io/en/stable/](https://openpyxl.readthedocs.io/en/stable/)|Reads and writes Excel 2010 xlsx/xlsm files to and from Table objects.<br>**Does not seem to be installed with QGIS Python.** |`python -m pip install openpyxl`|
 |requests (extended package)|[http://docs.python-requests.org/en/master/](http://docs.python-requests.org/en/master/)<br><br> [https://pypi.org/project/requests/](https://pypi.org/project/requests/)|Downloads data files within the [`WebGet`](http://software.openwaterfoundation.org/geoprocessor/latest/doc-user/command-ref/WebGet/WebGet/) command. <br><br>The `requests[security]` extension package is preferred over the core `requests` package to avoid an error that would occur when downloading a file over `https` with the [`WebGet`](http://software.openwaterfoundation.org/geoprocessor/latest/doc-user/command-ref/WebGet/WebGet/) command. The error that occurred when using the core `requests` package printed:<br>`requests.exceptions.SSLError: [Errno 1] _ssl.c:503: error:140770FC:SSL routines:SSL23_GET_SERVER_HELLO:unknown protocol`. <br>This error does not occur when utilizing the `requests[security]` extension package.<br>**The `requests` package is installed with QGIS Python but not `requests[security]`, so install it.** | `python -m pip install requests[security]`|
 |SQLAlchemy|[http://www.sqlalchemy.org/](http://www.sqlalchemy.org/)|Enables connections to databases.<br>**Does not seem to be installed in QGIS Python.**|`python -m pip install SQLAlchemy`|
-|virtualenv|[https://virtualenv.pypa.io/en/latest/](https://virtualenv.pypa.io/en/latest/)|Used to package the GeoProcessor runtime into an isolated Python environment when [creating an installer](../dev-tasks/creating-installer.md).<br>**Does not seem to be installed in QGIS Python - is this why sometimes creating venv in Python does not work the first time?.**|`python -m pip install virtualenv`|
+|virtualenv|[https://virtualenv.pypa.io/en/latest/](https://virtualenv.pypa.io/en/latest/)|Used to package the GeoProcessor runtime into an isolated Python environment when [creating an installer](../dev-tasks/creating-installer.md).<br>**Does not seem to be installed in QGIS Python.  If installed in the QGIS Python, then it will be copied when PyCharm creates its virtual environment and does not need to be reinstalled in the venv.** |`python -m pip install virtualenv`|
 
 ### System/User Python Additional Packages ###
 
@@ -331,13 +336,14 @@ is created similar to how the development virtual environment is created.
 Installation of additional Python packages is automated.
 See the [Development Tasks / Creating Installer](../dev-tasks/creating-installer.md) documentation section.
 
-### Troubleshooting ###
+### Troubleshooting Installing Additional Python Packages ###
 
 This section provides information about troubleshooting installing Python additional packages.
 
 #### Error message: `pip is configured with locations that require TLS/SSL, however, the ssl module in Python is not available.`
 
-This error has been seen with QGIS 3.10 and typically indicates that Python is not installed with required TLS/SSL libraries for secure communication.
+This error has been seen with QGIS 3.10 and 3.26.3 and typically indicates that Python is not installed with required TLS/SSL libraries for secure communication.
+This may occur when installing the `virtualenv` package that is needed by PyCharm to set up a virtual environment for development.
 It is strange that Python is not distributed with these libraries by default but some versions of Python do not seem to include
 and additional action is required.
 The following illustrates the issue and solution.
@@ -402,7 +408,7 @@ ImportError: DLL load failed: The specified module could not be found.
 ```
 
 See the [bugs.python.org article](https://bugs.python.org/issue39344).
-Following the advice in this article, copy from a personal Python 3.7 `AppData/Local/Programs/Python/Python7/` the files 
+Following the advice in this article, copy from a personal Python 3.7 `AppData/Local/Programs/Python/Python37/` the files 
 `libcripto-1_1-x64.dll` and `libssl_1_1-64.dll` to the venv `Scripts` folder.
 Then get the following, indicating that `SSL` is loading:
 
@@ -416,6 +422,12 @@ Type "help", "copyright", "credits" or "license" for more information.
 
 To facilitate Python installations needed by the GeoProcessor, the libraries have been added to the GeoProcessor repository in the
 `resources/installer/win/ssl` folder.
+However (for example for installing venv for the QGIS 3.26.3 Python),
+it may also be possible to copy `libcrypto-1_1.dll` and `libssl-1_1-x64.dll` from the main `QGIS 3.x\bin` folder to 
+the `QGIS 3.x\apps\Python3x\DLLs` folder, which is where the `_ssl.pyd` file exists.
+Note that other copies of these libraries may exist in that folder (e.g., `libcrypto-1_1.dll` and `libssl-1_1.dll`).
+Use the `diff` command to compare the files to see if they are actually different.
+Sometimes is is necessary to restart the computer because DLL files seem to be cached in memory.
 
 **Experience has shown that leaving these libraries in the instance can cause a problem running GeoProcessor,
 resulting in the following error.  Therefore, remove the libraries once the `pip` tasks are complete.
@@ -452,4 +464,4 @@ Exiting gp.bat with exit code 1
 
 The following are useful resources for understanding QGIS Python configuration.
 
-* [Stack Overflow:  OSGeo4W shell with python3](https://gis.stackexchange.com/questions/273870/osgeo4w-shell-with-python3).
+*   [Stack Overflow:  OSGeo4W shell with python3](https://gis.stackexchange.com/questions/273870/osgeo4w-shell-with-python3).
