@@ -1,8 +1,8 @@
 # GeoProcessor / Development Environment / Running the GeoProcessor #
 
 * [Running GeoProcessor in the Development Environment](#running-geoprocessor-in-the-development-environment)
-	+ [Running GeoProcessor from the Command Line](#running-geoprocessor-from-the-command-line)
-	+ [Running GeoProcessor in PyCharm](#running-geoprocessor-in-pycharm)
+    + [Running GeoProcessor from the Command Line](#running-geoprocessor-from-the-command-line)
+    + [Running GeoProcessor in PyCharm](#running-geoprocessor-in-pycharm)
 * [Running GeoProcessor in the  Build System Virtual Environment](#running-geoprocessor-in-the-build-system-virtual-environment)
 * [Running GeoProcessor in the Operational Virtual Environment](#running-geoprocessor-in-the-operational-virtual-environment)
 * [Running GeoProcessor in the Testing Framework Environment](#running-geoprocessor-in-the-testing-framework-environment)
@@ -51,14 +51,14 @@ GeoProcessor Scripts and Batch Files used in Development Environment
 The implementation status for command line GeoProcessor for each operating system is listed below:
 
 * ![Cygwin](../images/cygwin-32.png) Cygwin:
-	+ `gpdev` - **Not tested.**
-	+ Run the testing framework by deploying to Cygwin Python virtual machine to run testing framework
+    + `gpdev` - **Not tested.**
+    + Run the testing framework by deploying to Cygwin Python virtual machine to run testing framework
 * ![Linux](../images/linux-32.png) Linux:
-	+ `gpdev` - **Not tested.**
-	+ Run the testing framework by deploying to Linux Python virtual machine to run testing framework
+    + `gpdev` - **Not tested.**
+    + Run the testing framework by deploying to Linux Python virtual machine to run testing framework
 * ![Windows](../images/windows-32.png) Windows 10:
-	+ [`gpdev.bat`](https://github.com/OpenWaterFoundation/owf-app-geoprocessor-python/blob/master/scripts/gpdev.bat) - **tested and used for development**
-	+ [`gpuidev.bat`](https://github.com/OpenWaterFoundation/owf-app-geoprocessor-python/blob/master/scripts/gpuidev.bat) - **tested and used for development**
+    + [`gpdev.bat`](https://github.com/OpenWaterFoundation/owf-app-geoprocessor-python/blob/master/scripts/gpdev.bat) - **tested and used for development**
+    + [`gpuidev.bat`](https://github.com/OpenWaterFoundation/owf-app-geoprocessor-python/blob/master/scripts/gpuidev.bat) - **tested and used for development**
 
 ## Running GeoProcessor in PyCharm ##
 
@@ -102,14 +102,14 @@ GeoProcessor Scripts and Batch Files used in Operational Environment
 The implementation status for each operating system is listed below:
 
 * ![Cygwin](../images/cygwin-32.png) Cygwin:
-	+ [`gp`](https://github.com/OpenWaterFoundation/owf-app-geoprocessor-python/blob/master/scripts/gp) - **has not been tested recently**
-	+ [`gpui`](https://github.com/OpenWaterFoundation/owf-app-geoprocessor-python/blob/master/scripts/gpui) - **has not been tested recently**
+    + [`gp`](https://github.com/OpenWaterFoundation/owf-app-geoprocessor-python/blob/master/scripts/gp) - **has not been tested recently**
+    + [`gpui`](https://github.com/OpenWaterFoundation/owf-app-geoprocessor-python/blob/master/scripts/gpui) - **has not been tested recently**
 * ![Linux](../images/linux-32.png) Linux:
-	+ [`gp`](https://github.com/OpenWaterFoundation/owf-app-geoprocessor-python/blob/master/scripts/gp) - **has not been tested recently**
-	+ [`gpui`](https://github.com/OpenWaterFoundation/owf-app-geoprocessor-python/blob/master/scripts/gpui) - **has not been tested recently**
+    + [`gp`](https://github.com/OpenWaterFoundation/owf-app-geoprocessor-python/blob/master/scripts/gp) - **has not been tested recently**
+    + [`gpui`](https://github.com/OpenWaterFoundation/owf-app-geoprocessor-python/blob/master/scripts/gpui) - **has not been tested recently**
 * ![Windows](../images/windows-32.png) Windows 10:
-	+ [`gp.bat`](https://github.com/OpenWaterFoundation/owf-app-geoprocessor-python/blob/master/scripts/gp.bat) - **tested and used operationally**
-	+ [`gpui.bat`](https://github.com/OpenWaterFoundation/owf-app-geoprocessor-python/blob/master/scripts/gpui.bat) - **tested and used operationally**
+    + [`gp.bat`](https://github.com/OpenWaterFoundation/owf-app-geoprocessor-python/blob/master/scripts/gp.bat) - **tested and used operationally**
+    + [`gpui.bat`](https://github.com/OpenWaterFoundation/owf-app-geoprocessor-python/blob/master/scripts/gpui.bat) - **tested and used operationally**
 
 ## Running GeoProcessor in the Testing Framework Environment ##
 
@@ -122,13 +122,13 @@ The GeoProcessor can be run in a limited test environment that does not use the 
 using a script that uses Python 3 in a Python virtual environment:
 
 * ![Cygwin](../images/cygwin-32.png) Cygwin:
-	+ [`scripts/gptest`](https://github.com/OpenWaterFoundation/owf-app-geoprocessor-python/blob/master/scripts/gptest) shell script
-	+ [`scripts/gptestui`](https://github.com/OpenWaterFoundation/owf-app-geoprocessor-python/blob/master/scripts/gptestui) shell script to run UI
+    + [`scripts/gptest`](https://github.com/OpenWaterFoundation/owf-app-geoprocessor-python/blob/master/scripts/gptest) shell script
+    + [`scripts/gptestui`](https://github.com/OpenWaterFoundation/owf-app-geoprocessor-python/blob/master/scripts/gptestui) shell script to run UI
 * ![Linux](../images/linux-32.png) Linux:
-	+ [`scripts/gptest`](https://github.com/OpenWaterFoundation/owf-app-geoprocessor-python/blob/master/scripts/gptest) shell script
-	+ [`scripts/gptestui`](https://github.com/OpenWaterFoundation/owf-app-geoprocessor-python/blob/master/scripts/gptestui) shell script to run UI
+    + [`scripts/gptest`](https://github.com/OpenWaterFoundation/owf-app-geoprocessor-python/blob/master/scripts/gptest) shell script
+    + [`scripts/gptestui`](https://github.com/OpenWaterFoundation/owf-app-geoprocessor-python/blob/master/scripts/gptestui) shell script to run UI
 * ![Windows](../images/windows-32.png) Windows 10:
-	+ `scripts/gptest.bat` - **Not yet developed.**
+    + `scripts/gptest.bat` - **Not yet developed.**
 
 This approach can use the GeoProcessor as a functional test framework independent of QGIS.
 It is common to run the testing framework to run [functional tests for a software product](../dev-tasks/testing.md#functional-tests).

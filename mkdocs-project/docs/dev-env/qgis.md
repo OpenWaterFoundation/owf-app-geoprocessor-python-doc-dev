@@ -7,12 +7,14 @@ The following resources explain how to install QGIS.
 64-bit QGIS is recommended and is the focus of development.
 See the [GeoProcessor / QGIS / Python Versions](../dev-new/dev-new.md#install-qgis) table for a software version compatibility information.
 
+
 * [Install QGIS](#install-qgis)
+* [Install Additional Python Packages](#install-additional-python-packages)
 * [QGIS Configuration Scripts](#qgis-configuration-scripts)
 * [QGIS Folder Structure](#qgis-folder-structure)
-	+ [QGIS Python Distribution](#qgis-python-distribution)
-	+ [QGIS Python Modules](#qgis-python-modules)
-	+ [QGIS Supporting Programs](#qgis-supporting-programs)
+    + [QGIS Python Distribution](#qgis-python-distribution)
+    + [QGIS Python Modules](#qgis-python-modules)
+    + [QGIS Supporting Programs](#qgis-supporting-programs)
 
 -------------
 
@@ -26,6 +28,14 @@ To install QGIS, follow instructions in the
 
 Additional installation steps, such as configuring the PyCharm virtual environment,
 and installing additional Python packages, are discussed in other sections of the documentation.
+
+## Install Additional Python Packages ##
+
+After QGIS is installed, additional Python packages must be installed in order to create
+virtual environments that are used to develop and run PyCharm and the GeoProcessor.
+
+See the [Python / Install Additional Python Packages](python.md#install-additional-python-packages)
+documentation.
 
 ## QGIS Configuration Scripts ##
 
