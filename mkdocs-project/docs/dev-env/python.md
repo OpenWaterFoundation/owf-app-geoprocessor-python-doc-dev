@@ -76,7 +76,7 @@ The GeoProcessor software packaging for a deployed system is designed to **not**
 However, for GeoProcessor software developers, it is necessary to install the `virtualenv` package to streamline
 the QGIS Python to be used as the base interpreter for new virtual environments.
 
-* See the [QGIS Python Additional Packages](#qgis-python-additional-packages) section of this page
+*   See the [QGIS Python Additional Packages](#qgis-python-additional-packages) section of this page
 
 ### Development Environment Virtual Environment Python ###
 

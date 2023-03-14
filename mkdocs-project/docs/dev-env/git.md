@@ -5,11 +5,11 @@ Install and configure Git as per a typical software project.
 For example, use Git for Windows for command line Git client.
 The Git features of PyCharm or other Git client can also be used.
 
-* ![windows](../images/windows-32.png) See [Git downloads](https://git-scm.com/downloads) and select downloads for Windows.
-* ![cygwin](../images/cygwin-32.png) For Cygwin, install the Git software in the Cygwin setup tool.
-* ![linux](../images/linux-32.png) For Linux, install Git software using `apt-get` or other install tool.
+*   ![windows](../images/windows-32.png) See [Git downloads](https://git-scm.com/downloads) and select downloads for Windows.
+*   ![cygwin](../images/cygwin-32.png) For Cygwin, install the Git software in the Cygwin setup tool.
+*   ![linux](../images/linux-32.png) For Linux, install Git software using `apt-get` or other install tool.
 
-The GeoProcessor project uses a "feature branch" workflow where the `master` branch is the current branch under development,
+The GeoProcessor project uses a "feature branch" workflow where the `main` branch is the current branch under development,
 with tags and stable release branches made as necessary for releases.
 
 The GeoProcessor version uses `dev` to indicate a version that is under development,
