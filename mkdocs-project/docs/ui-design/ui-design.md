@@ -1,24 +1,24 @@
 # GeoProcessor / User Interface (UI) Design #
 
-* [Overview](#overview)
-	+ [Using the UI](#using-the-ui)
-	+ [UI Design Overview](#ui-design-overview)
-	+ [User Interface Terms](#user-interface-terms)
-	+ [Package Structure](#package-structure)
-* [Main UI](#main-ui):
-	+ The [`GeoProcessorUI` Class](#geoprocessorui-class) - the main UI class
-	+ The [`CommandListWidget` Class](#commandlistwidget-class) - widget class to display and manage commands
-	+ The [`GeoProcessorCommandEditorFactory` Class](#geoprocessorcommandeditorfactory-class) - create command editors
-* [Command Editor UI](#command-editor-ui):
-	+ The [`AbstractCommandEditor` Class](#abstractcommandeditor-class) - parent class for all command editors
-	+ The [`GenericCommandEditor` Class](#genericcommandeditor-class) - default command editor
-	+ The [`InsertLineEditor` Class](#insertlineeditor-class) - editor for one-line commands without parameters
-	+ The [`InsertLineRulerEditor` Class](#insertlinerulereditor-class) - editor for multi-line commands without parameters
-	+ The [`SimpleCommandEditor` Class](#simplecommandeditor-class) - simple one panel editor
-	+ The [`TabbedCommandEditor` Class](#tabbedcommandeditor-class) - tabbed panel editor
-	+ [Command Input Metadata](#command-input-metadata) - configuring command editors
-* [Utility Modules](#utility-modules)
-* [Resources](#resources)
+*   [Overview](#overview)
+    +   [Using the UI](#using-the-ui)
+    +   [UI Design Overview](#ui-design-overview)
+    +   [User Interface Terms](#user-interface-terms)
+    +   [Package Structure](#package-structure)
+*   [Main UI](#main-ui):
+    +   The [`GeoProcessorUI` Class](#geoprocessorui-class) - the main UI class
+    +   The [`CommandListWidget` Class](#commandlistwidget-class) - widget class to display and manage commands
+    +   The [`GeoProcessorCommandEditorFactory` Class](#geoprocessorcommandeditorfactory-class) - create command editors
+*   [Command Editor UI](#command-editor-ui):
+    +   The [`AbstractCommandEditor` Class](#abstractcommandeditor-class) - parent class for all command editors
+    +   The [`GenericCommandEditor` Class](#genericcommandeditor-class) - default command editor
+    +   The [`InsertLineEditor` Class](#insertlineeditor-class) - editor for one-line commands without parameters
+    +   The [`InsertLineRulerEditor` Class](#insertlinerulereditor-class) - editor for multi-line commands without parameters
+    +   The [`SimpleCommandEditor` Class](#simplecommandeditor-class) - simple one panel editor
+    +   The [`TabbedCommandEditor` Class](#tabbedcommandeditor-class) - tabbed panel editor
+    +   [Command Input Metadata](#command-input-metadata) - configuring command editors
+*   [Utility Modules](#utility-modules)
+*   [Resources](#resources)
 
 ------------------
 
@@ -30,39 +30,39 @@ This documentation explains the user interface design.
 
 A basic summary of using the UI is as follows:
 
-1. Start the GeoProcessor user interface using an instance of `GeoProcessorUI` class,
-instantiated from the `gp.py` module.
-2. Use the ***File / Open Command File*** menu to open a command file.
-3. The command file will appear in the ***Command List***, implemented using the `CommandListWidget` class. 
-Each line of the command file is a unique line in the `command list` ui component
-4. Click the ***Run Commands*** button. 
-The GeoProcessor instance used by the UI will run the commands.
-5. Right click on a command in the command list and select ***Edit Command*** to edit a command.
+1.  Start the GeoProcessor user interface using an instance of `GeoProcessorUI` class,
+    instantiated from the `gp.py` module.
+2.  Use the ***File / Open Command File*** menu to open a command file.
+3.  The command file will appear in the ***Command List***, implemented using the `CommandListWidget` class. 
+    Each line of the command file is a unique line in the `command list` ui component
+4.  Click the ***Run Commands*** button. 
+    The GeoProcessor instance used by the UI will run the commands.
+5.  Right click on a command in the command list and select ***Edit Command*** to edit a command.
 
 ### UI Design Overview ###
 
 The user interface is implemented by the following classes and modules, listed in order of general to specific,
 with sections below to provide more details.
 
-1. Main UI:
-	1. The [`GeoProcessorUI` class](#geoprocessorui-class)
-		* creates the main window user interface
-		* controls the actions that take place on the main window
-	2. The [`CommandListWidget` class](#commandlistwidget-class)
-		* is the visual component of MVC pattern that displays the list of commands
-		* has an instance of `GeoProcessorListModel`, which is the model part of MVC pattern and has an instance of `GeoProcessor`
-	3. The [`GeoProcessorCommandEditorFactory` class](#geoprocessorcommandeditorfactory-class)
-		* determines which instance of command editor to create from command
-2. Command Editor:
-	1. The [`AbstractCommandEditor` class](#the-abstractcommandeditor-class)
-		* parent class to all command editor classes 
-		* creates the features of the `command dialog` windows that are consistent across all `command dialog` windows 
-		* controls the actions that take place consistently across all `command dialog` windows 
-	2. The [`GenericCommandEditor` class](#genericcommandeditor-class) - used for unknown commands
-	3. The [`SimpleCommandEditor` class](#simplecommandeditor-class) - used for most commands
-	4. The [`TabbedCommandEditor` class](#tabbedcommandeditor-class) - used for advanced commands with many parameters
-3. UI utility classes:
-	1. The [`qt_util`](#qt_util) module provides useful functions for Qt
+1.  Main UI:
+    1.  The [`GeoProcessorUI` class](#geoprocessorui-class)
+        *   creates the main window user interface
+        *   controls the actions that take place on the main window
+    2.  The [`CommandListWidget` class](#commandlistwidget-class)
+        *   is the visual component of MVC pattern that displays the list of commands
+        *   has an instance of `GeoProcessorListModel`, which is the model part of MVC pattern and has an instance of `GeoProcessor`
+    3.  The [`GeoProcessorCommandEditorFactory` class](#geoprocessorcommandeditorfactory-class)
+        *   determines which instance of command editor to create from command
+2.  Command Editor:
+    1.  The [`AbstractCommandEditor` class](#the-abstractcommandeditor-class)
+        *   parent class to all command editor classes 
+        *   creates the features of the `command dialog` windows that are consistent across all `command dialog` windows 
+        *   controls the actions that take place consistently across all `command dialog` windows 
+    2.  The [`GenericCommandEditor` class](#genericcommandeditor-class) - used for unknown commands
+    3.  The [`SimpleCommandEditor` class](#simplecommandeditor-class) - used for most commands
+    4.  The [`TabbedCommandEditor` class](#tabbedcommandeditor-class) - used for advanced commands with many parameters
+3.  UI utility classes:
+    1.  The [`qt_util`](#qt_util) module provides useful functions for Qt
 
 ### User Interface Terms ###
 
@@ -141,7 +141,7 @@ An instance of this class is created by the main `gp.py` application if run with
 
 ### `GeoProcessorUI` Class ###
 
-The [`geoprocessor.ui.app.GeoProcesssorUI`](https://github.com/OpenWaterFoundation/owf-app-geoprocessor-python/blob/master/geoprocessor/ui/app/GeoProcessorUI.py)
+The [`geoprocessor.ui.app.GeoProcesssorUI`](https://github.com/OpenWaterFoundation/owf-app-geoprocessor-python/tree/main/src/geoprocessor/ui/app/GeoProcessorUI.py)
 class is the main application UI class, which uses Qt5 to implement the user interface.
 The class is a child of the `QMainWindow` class.
 The class defines many components for menus, toolbar, and components for commands and results.
@@ -149,9 +149,9 @@ The main data objects are as follows:
 
 | **GeoProcessorUI Data Object** | **Description** |
 | -- | -- |
-| `app_session` | Instance of the [`GeoProcessorAppSession`](https://github.com/OpenWaterFoundation/owf-app-geoprocessor-python/blob/master/geoprocessor/app/GeoProcessorAppSession.py) class, which maintains list of application data for the user. |
-| `geoprocessor` | Instance of [`GeoProcessor`](https://github.com/OpenWaterFoundation/owf-app-geoprocessor-python/blob/master/geoprocessor/core/GeoProcessor.py), which is used to run the commands and provide results for the UI. |
-| `gp_model` | Instance of [`GeoProcessorListModel`](https://github.com/OpenWaterFoundation/owf-app-geoprocessor-python/blob/master/geoprocessor/ui/core/GeoProcessorListModel.py), which manages a list of commands for the UI. |
+| `app_session` | Instance of the [`GeoProcessorAppSession`](https://github.com/OpenWaterFoundation/owf-app-geoprocessor-python/tree/main/src/geoprocessor/app/GeoProcessorAppSession.py) class, which maintains list of application data for the user. |
+| `geoprocessor` | Instance of [`GeoProcessor`](https://github.com/OpenWaterFoundation/owf-app-geoprocessor-python/tree/main/src/geoprocessor/core/GeoProcessor.py), which is used to run the commands and provide results for the UI. |
+| `gp_model` | Instance of [`GeoProcessorListModel`](https://github.com/OpenWaterFoundation/owf-app-geoprocessor-python/tree/main/src/geoprocessor/ui/core/GeoProcessorListModel.py), which manages a list of commands for the UI. |
 | `commmands_cut_buffer` | List of commands from cut/copy actions, which can be pasted into the command list. |
 
 Important `GeoProcessorUI` functions are as follows.
@@ -177,12 +177,12 @@ An effort is made to avoid stray functions that are not called.
 ### `CommandListWidget` Class ###
 
 The top part of the `GeoProcessorUI` class that displays the list of commands uses the custom
-[`CommandListWidget`](https://github.com/OpenWaterFoundation/owf-app-geoprocessor-python/blob/master/geoprocessor/ui/app/CommandListWidget.py) class.
+[`CommandListWidget`](https://github.com/OpenWaterFoundation/owf-app-geoprocessor-python/tree/main/src/geoprocessor/ui/app/CommandListWidget.py) class.
 This widget is an integration of the following components:
 
 | **Component**&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | **Type**&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | **Description** |
 | -- | -- | -- |
-| `command_ListView` | [`GeoProcessorListView`](https://github.com/OpenWaterFoundation/owf-app-geoprocessor-python/blob/master/geoprocessor/ui/core/GeoProcessorListView.py) | List view that extends [`QListView`](https://doc.qt.io/qtforpython/PySide2/QtWidgets/QListView.html), which allows using the [`GeoProcessorListModel`](https://github.com/OpenWaterFoundation/owf-app-geoprocessor-python/blob/master/geoprocessor/ui/core/GeoProcessorListModel.py), which interfaces with the `GeoProcessor` instance.  An earlier design used a `QListWidget`, but this required translating commands to strings in the list, which added additional synchronization and was confusing.  A limitation of `QListView` is that it does not seem to provide as many methods as `QListWidget`. |
+| `command_ListView` | [`GeoProcessorListView`](https://github.com/OpenWaterFoundation/owf-app-geoprocessor-python/tree/main/src/geoprocessor/ui/core/GeoProcessorListView.py) | List view that extends [`QListView`](https://doc.qt.io/qtforpython/PySide2/QtWidgets/QListView.html), which allows using the [`GeoProcessorListModel`](https://github.com/OpenWaterFoundation/owf-app-geoprocessor-python/tree/main/src/geoprocessor/ui/core/GeoProcessorListModel.py), which interfaces with the `GeoProcessor` instance.  An earlier design used a `QListWidget`, but this required translating commands to strings in the list, which added additional synchronization and was confusing.  A limitation of `QListView` is that it does not seem to provide as many methods as `QListWidget`. |
 | `number_ListWidget` | [`QListWidget`](https://doc.qt.io/qtforpython/PySide2/QtWidgets/QListWidget.html) | List of command numbers and icon to indicate command status, similar to Eclipse and PyCharm.  The list is synchronized the `command_ListView` after running commands. |
 | `gutter_Frame` | [`QFrame`](https://doc.qt.io/qtforpython/PySide2/QtWidgets/QFrame.html) | Narrow gutter that indicates command status with a colored block, similar to Eclipse and PyCharm.  The component is a simple drawing area that is repainted when `command_ListView` changes.  A list was used initially but is not workable because for a long command file the height of each row is too small. |
 
@@ -190,7 +190,7 @@ Using the above design helps ensure that the user interface interactions with co
 
 ### `GeoProcessorCommandEditorFactory` Class ###
 
-The [`GeoProcessorCommandEditorFactory`](https://github.com/OpenWaterFoundation/owf-app-geoprocessor-python/blob/master/geoprocessor/ui/core/GeoProcessorCommandEditorFactory.py) class
+The [`GeoProcessorCommandEditorFactory`](https://github.com/OpenWaterFoundation/owf-app-geoprocessor-python/tree/main/src/geoprocessor/ui/core/GeoProcessorCommandEditorFactory.py) class
 creates an instance of a command editor for a command.
 This is similar to how commands are created with `GeoProcessorCommandFactory`.
 However, whereas each command's computational functionality is implemented in a separate command,
@@ -246,7 +246,7 @@ Reviewing the code for different editor types illustrates how editors are implem
 
 ### `AbstractCommandEditor` Class ###
 
-The [`AbstractCommandEditor`](https://github.com/OpenWaterFoundation/owf-app-geoprocessor-python/blob/master/geoprocessor/ui/commands/abstract/AbstractCommandEditor.py)
+The [`AbstractCommandEditor`](https://github.com/OpenWaterFoundation/owf-app-geoprocessor-python/tree/main/src/geoprocessor/ui/commands/abstract/AbstractCommandEditor.py)
 class is the parent class to all GeoProcessor command editors.
 The following setup functions are called in sequence to set up the main components (areas) of the editor:
 
@@ -275,7 +275,7 @@ which are used by the `SimpleEditor` and `TabbedEditor`:
 
 ### `GenericCommandEditor` Class ###
 
-The [`GenericCommandEditor`](https://github.com/OpenWaterFoundation/owf-app-geoprocessor-python/blob/master/geoprocessor/ui/commands/abstract/GenericCommandEditor.py)
+The [`GenericCommandEditor`](https://github.com/OpenWaterFoundation/owf-app-geoprocessor-python/tree/main/src/geoprocessor/ui/commands/abstract/GenericCommandEditor.py)
 is used for unknown commands.  See the code for functions that are implemented to configure the dialog.
 
 **<p style="text-align: center;">
@@ -288,7 +288,7 @@ is used for unknown commands.  See the code for functions that are implemented t
 
 ### `InsertLineEditor` Class ###
 
-The [`InsertLineEditor`](https://github.com/OpenWaterFoundation/owf-app-geoprocessor-python/blob/master/geoprocessor/ui/commands/util/InsertLineEditor.py)
+The [`InsertLineEditor`](https://github.com/OpenWaterFoundation/owf-app-geoprocessor-python/tree/main/src/geoprocessor/ui/commands/util/InsertLineEditor.py)
 is used for one-line commands without parameters, include `/*`, `*/`, and empty lines.  See the code for functions that are implemented to configure the dialog.
 
 **<p style="text-align: center;">
@@ -301,7 +301,7 @@ is used for one-line commands without parameters, include `/*`, `*/`, and empty 
 
 ### `InsertLineRulerEditor` Class ###
 
-The [`InsertLineRulerEditor`](https://github.com/OpenWaterFoundation/owf-app-geoprocessor-python/blob/master/geoprocessor/ui/commands/util/InsertLineRulerEditor.py)
+The [`InsertLineRulerEditor`](https://github.com/OpenWaterFoundation/owf-app-geoprocessor-python/tree/main/src/geoprocessor/ui/commands/util/InsertLineRulerEditor.py)
 is used for multi-line commands without parameters, currently only `#` commands.
 See the code for functions that are implemented to configure the dialog.
 
@@ -315,7 +315,7 @@ See the code for functions that are implemented to configure the dialog.
 
 ### `SimpleCommandEditor` Class ###
 
-The [`SimpleCommandEditor`](https://github.com/OpenWaterFoundation/owf-app-geoprocessor-python/blob/master/geoprocessor/ui/commands/abstract/SimpleCommandEditor.py)
+The [`SimpleCommandEditor`](https://github.com/OpenWaterFoundation/owf-app-geoprocessor-python/tree/main/src/geoprocessor/ui/commands/abstract/SimpleCommandEditor.py)
 is used for most commands and provides UI components to edit input parameters.
 See the code for functions that are implemented to configure the dialog.
 
@@ -329,7 +329,7 @@ See the code for functions that are implemented to configure the dialog.
 
 ### `TabbedCommandEditor` Class ###
 
-The [`TabbedCommandEditor`](https://github.com/OpenWaterFoundation/owf-app-geoprocessor-python/blob/master/geoprocessor/ui/commands/abstract/TabbedCommandEditor.py)
+The [`TabbedCommandEditor`](https://github.com/OpenWaterFoundation/owf-app-geoprocessor-python/tree/main/src/geoprocessor/ui/commands/abstract/TabbedCommandEditor.py)
 is used for advanced commands with many parameters that need to be grouped.
 **This editor type is not yet implemented.**
 
@@ -389,13 +389,13 @@ Command `parameter_input_metadata` Values
 | `Values`                      | List | Indicate a list of values to show in choices, as an array of strings, for example: `["", "Value1", "Value2"]` | Values are only used for combobox. |
 | `Values.Editable`             | List | Whether the parameter is editable, as a bool `True` or `False`.   An editable combobox allows text to be entered. | `True` for text fields, `False` for combobox. |
 
-See the [`ReadGeoLayerFromGeoJSON`](https://github.com/OpenWaterFoundation/owf-app-geoprocessor-python/blob/master/geoprocessor/commands/vector/ReadGeoLayerFromGeoJSON.py)
+See the [`ReadGeoLayerFromGeoJSON`](https://github.com/OpenWaterFoundation/owf-app-geoprocessor-python/tree/main/src/geoprocessor/commands/vector/ReadGeoLayerFromGeoJSON.py)
 class for an example.
 
 ## Utility Modules ##
 
 The UI code uses a number of utility modules as listed below, in addition to the other
-[`core/util`](https://github.com/OpenWaterFoundation/owf-app-geoprocessor-python/tree/master/geoprocessor/ui/util) utility modules.
+[`core/util`](https://github.com/OpenWaterFoundation/owf-app-geoprocessor-python/tree/main/src/geoprocessor/ui/util) utility modules.
 These utility modules will likely expand as reusable code is identified.
 
 **<p style="text-align: center;">
@@ -404,10 +404,10 @@ UI Utility Modules
 
 | **Module** | **Description** |
 | -- | -- |
-| [`util/command_util.py`](https://github.com/OpenWaterFoundation/owf-app-geoprocessor-python/blob/master/geoprocessor/util/command_util.py) | Parsing commands, checking command status. |
-| [`io/util/qt_util.py`](https://github.com/OpenWaterFoundation/owf-app-geoprocessor-python/blob/master/geoprocessor/ui/util/qt_util.py) | Qt utility functions. |
+| [`util/command_util.py`](https://github.com/OpenWaterFoundation/owf-app-geoprocessor-python/tree/main/src/geoprocessor/util/command_util.py) | Parsing commands, checking command status. |
+| [`io/util/qt_util.py`](https://github.com/OpenWaterFoundation/owf-app-geoprocessor-python/tree/main/src/geoprocessor/ui/util/qt_util.py) | Qt utility functions. |
 
 ## Resources ##
 
-- [Qt Documentation: Qt5 Layout Management](http://doc.qt.io/qt-5/layout.html)
-- [Qt Documentation: Qt Widget Classes](http://doc.qt.io/qt-5/qtwidgets-module.html)
+*   [Qt Documentation: Qt5 Layout Management](http://doc.qt.io/qt-5/layout.html)
+*   [Qt Documentation: Qt Widget Classes](http://doc.qt.io/qt-5/qtwidgets-module.html)
