@@ -7,17 +7,17 @@ In the future plugin commands will be implemented that can be developed in files
 The order of the following steps can vary depending on activities and development approach.
 For example, adding a repository issue could occur first.
 
-* [Confirm that a Command does not Already Exist and Draft Requirements](#confirm-that-a-command-does-not-already-exist-and-draft-requirements)
-* [Select a Command Name](#select-a-command-name)
-* [Add a Repository Issue](#add-a-repository-issue)
-* [Create a Branch for Development](#create-a-branch-for-development)
-* [Modify Code](#modify-code)
-	+ [Add Command Class](#add-command-class)
-	+ [Add to Command Factory](#add-to-command-factory)
-	+ [Add to GeoProcessorUI](#add-to-geoprocessorui)
-	+ [Add Code to Other Modules](#add-code-to-other-modules)
-* [Define Tests](#define-tests)
-* [Add Documentation](#add-documentation)
+*   [Confirm that a Command does not Already Exist and Draft Requirements](#confirm-that-a-command-does-not-already-exist-and-draft-requirements)
+*   [Select a Command Name](#select-a-command-name)
+*   [Add a Repository Issue](#add-a-repository-issue)
+*   [Create a Branch for Development](#create-a-branch-for-development)
+*   [Modify Code](#modify-code)
+    +   [Add Command Class](#add-command-class)
+    +   [Add to Command Factory](#add-to-command-factory)
+    +   [Add to GeoProcessorUI](#add-to-geoprocessorui)
+    +   [Add Code to Other Modules](#add-code-to-other-modules)
+*   [Define Tests](#define-tests)
+*   [Add Documentation](#add-documentation)
 
 ------------------
 
@@ -41,15 +41,15 @@ In any case, any changes that are recommended will be coordinated by the develop
 
 Command names in the GeoProcessor follow a number of conventions and new commands should adhere to these conventions:
 
-1. Commands fall into broad functional type, such as reading, manipulating, and writing data.
-Command names should include important words like `Read`.
-2. A command should perform one singular task.
-A command can be run in sequence with other commands in a command file.
-Therefore, the command name should include an clear action, subject of the action, and modifiers.
-For example Action=Read, subject=GeoLayer, modifier=FromXxxx would give a command `ReadGeoLayerFromXxxx`.
-3. Use mixed case to make it easier to read words together without spaces.
-4. Be careful with plural.  This can be a point of negotiation depending on whether it makes sense for
-a command to operate on multiple output objects such as GeoLayers.
+1.  Commands fall into broad functional type, such as reading, manipulating, and writing data.
+    Command names should include important words like `Read`.
+2.  A command should perform one singular task.
+    A command can be run in sequence with other commands in a command file.
+    Therefore, the command name should include an clear action, subject of the action, and modifiers.
+    For example Action=Read, subject=GeoLayer, modifier=FromXxxx would give a command `ReadGeoLayerFromXxxx`.
+3.  Use mixed case to make it easier to read words together without spaces.
+4.  Be careful with plural.  This can be a point of negotiation depending on whether it makes sense for
+    a command to operate on multiple output objects such as GeoLayers.
 
 ## Add a Repository Issue ##
 
@@ -74,32 +74,32 @@ A command class should be added similar to other commands.
 Decide on the folder where the command should exist in `geoprocessor/commands` and copy an existing similar command.
 Then update the command accordingly:
 
-1. Make sure the command name and other metadata in the file are accurate.
-2. Update the `check_command_parameters` function to perform appropriate validation on input.
-3. Update the `run_command` function to implement the required functionality.
-Refer to the [Software Design](../software-design/software-design.md) documentation for guidelines.
+1.  Make sure the command name and other metadata in the file are accurate.
+2.  Update the `check_command_parameters` function to perform appropriate validation on input.
+3.  Update the `run_command` function to implement the required functionality.
+    Refer to the [Software Design](../software-design/software-design.md) documentation for guidelines.
 
 ### Add to Command Factory ###
 
 In order for the GeoProcessor to recognize the command as a built-in command, update the
 `geoprocessor/core/GeoProcessorCommandFactory.py` code to add the command, similar to other commands.
 
-1. The `registered_commands` data is not currently used but may be used in the future to facilitate dynamic loading of
-commands, including plugin commands.  Therefore, add the new command to the dictionary.
-2. Update the `new_command` function to add the command.
-Make sure the commands are alphabetized unless this would cause ambiguity due to a shorter command name
-always being matched and ignoring a longer name.
+1.  The `registered_commands` data is not currently used but may be used in the future to facilitate dynamic loading of
+    commands, including plugin commands.  Therefore, add the new command to the dictionary.
+2.  Update the `new_command` function to add the command.
+    Make sure the commands are alphabetized unless this would cause ambiguity due to a shorter command name
+    always being matched and ignoring a longer name.
 
 ### Add to GeoProcessorUI ###
 
 The command must be added to the `geoprocessor/ui/app/GeoProcessorUI` class in order to show the
 user a menu for a new command:
 
-1. Determine where the command should be inserted in UI menus by running the GeoProcessor and
-examining existing menus.
-2. Edit the `GeoProcessorUI` class and search for the nearest command determined above.
-Add code similar to other code.
-3. If necessary, add a new menu for the command if new command group is needed.
+1.  Determine where the command should be inserted in UI menus by running the GeoProcessor and
+    examining existing menus.
+2.  Edit the `GeoProcessorUI` class and search for the nearest command determined above.
+    Add code similar to other code.
+3.  If necessary, add a new menu for the command if new command group is needed.
 
 In the future commands may be automatically added to menus based on data in the command class.
 
@@ -126,8 +126,8 @@ Code can also be added to other utility modules and classes as necessary.
 The `owf-app-geoprocessor-python-test` repository contains automated functional tests.
 New commands should be tested by implementing tests similar to other commands.
 
-* See the [README](https://github.com/OpenWaterFoundation/owf-app-geoprocessor-python-test)
-* See the [Development Tasks / Testing](testing.md) documentation.
+*   See the [README](https://github.com/OpenWaterFoundation/owf-app-geoprocessor-python-test)
+*   See the [Development Tasks / Testing](testing.md) documentation.
 
 Unit tests using `punit` can also be defined, for example to test stand-alone functions.
 Where unit tests are difficult to code, use the functional tests.
@@ -136,5 +136,5 @@ Where unit tests are difficult to code, use the functional tests.
 
 Documentation for the new command should be added to the `owf-app-geoprocessor-python-doc-user` repository.
 
-* See the [README](https://github.com/OpenWaterFoundation/owf-app-geoprocessor-python-doc-user)
-* See the [Development Tasks / Documenting](documenting.md) documentation.
+*   See the [README](https://github.com/OpenWaterFoundation/owf-app-geoprocessor-python-doc-user)
+*   See the [Development Tasks / Documenting](documenting.md) documentation.

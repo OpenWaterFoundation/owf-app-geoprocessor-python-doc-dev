@@ -1,12 +1,12 @@
 # GeoProcessor / Development Environment / PyCharm #
 
-* [Introduction](#introduction)
-* [Alternatives to PyCharm](#alternatives-to-pycharm)
-* [Install PyCharm](#install-pycharm)
-* [Script to Run PyCharm](#script-to-run-pycharm)
-* [Configure PyCharm](#configure-pycharm)
-* [Update PyCharm](#update-pycharm)
-* [Update PyCharm to use New Python](#update-pycharm-to-use-new-python)
+*   [Introduction](#introduction)
+*   [Alternatives to PyCharm](#alternatives-to-pycharm)
+*   [Install PyCharm](#install-pycharm)
+*   [Script to Run PyCharm](#script-to-run-pycharm)
+*   [Configure PyCharm](#configure-pycharm)
+*   [Update PyCharm](#update-pycharm)
+*   [Update PyCharm to use New Python](#update-pycharm-to-use-new-python)
 
 -------------------
 
@@ -25,9 +25,9 @@ This means that the developer must set up the PyCharm project themselves rather 
 relying on PyCharm project files in the repository.
 This approach has been chosen because:
 
-* Changes made to PyCharm files by one developer won't impact other developers.
-* It is the least prescriptive to the developer community, allowing different PyCharm configurations and use of other IDEs.
-* Developers are expected to at least know how to set up a project to gain an appreciation of project configuration.
+*   Changes made to PyCharm files by one developer won't impact other developers.
+*   It is the least prescriptive to the developer community, allowing different PyCharm configurations and use of other IDEs.
+*   Developers are expected to at least know how to set up a project to gain an appreciation of project configuration.
 
 The following diagram illustrates how the PyCharm software is used with QGIS and Python (upper right part of diagram).
 
@@ -72,24 +72,24 @@ The PyCharm Community Edition is used for GeoProcessor development at the Open W
 However, other developers may prefer to use other Python development tools.
 Keep the following in mind:
 
-1. This Developer Documentation has been created assuming that PyCharm is used.
-Using other tools will require similar configuration.
-This documentation can be updated with examples for other tools.
-2. PyCharm project files are omitted from the repository using the main `.gitignore` file.
-Implementing other development environment tools should also take care to omit developer-specific and
-dynamic files from the repository.
-3. The development environment does not limit using build-in Python tools such as IDLE.
-4. Use of alternate tools should continue to follow project standards, such as PEP code formatting.
+1.  This Developer Documentation has been created assuming that PyCharm is used.
+    Using other tools will require similar configuration.
+    This documentation can be updated with examples for other tools.
+2.  PyCharm project files are omitted from the repository using the main `.gitignore` file.
+    Implementing other development environment tools should also take care to omit developer-specific and
+    dynamic files from the repository.
+3.  The development environment does not limit using build-in Python tools such as IDLE.
+4.  Use of alternate tools should continue to follow project standards, such as PEP code formatting.
 
 ## Install PyCharm ##
 
 This section describes how to install the PyCharm 64-bit Community Edition:
 
-1. Download a recent PyCharm Community Edition from the [PyCharm Download page](https://www.jetbrains.com/pycharm/download/#section=windows) - select Windows
-2. The installer has the option of creating a desktop shortcut.  Do this for 64-bit launcher.
-3. It is not necessary to associate `.py` files with PyCharm, but also OK to make the association.
-4. Otherwise, accept the defaults.
-5. The installer appears to be intelligent enough to carry forward configuration information from previous installations of PyCharm.
+1.  Download a recent PyCharm Community Edition from the [PyCharm Download page](https://www.jetbrains.com/pycharm/download/#section=windows) - select Windows
+2.  The installer has the option of creating a desktop shortcut.  Do this for 64-bit launcher.
+3.  It is not necessary to associate `.py` files with PyCharm, but also OK to make the association.
+4.  Otherwise, accept the defaults.
+5.  The installer appears to be intelligent enough to carry forward configuration information from previous installations of PyCharm.
 
 This will install PyCharm into a folder similar to `C:\Program Files\JetBrains\PyCharm Community Edition 2018.1.2`
 (new versions are released periodically).
