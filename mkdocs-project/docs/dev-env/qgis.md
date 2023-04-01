@@ -8,13 +8,13 @@ The following resources explain how to install QGIS.
 See the [GeoProcessor / QGIS / Python Versions](../dev-new/dev-new.md#install-qgis) table for a software version compatibility information.
 
 
-* [Install QGIS](#install-qgis)
-* [Install Additional Python Packages](#install-additional-python-packages)
-* [QGIS Configuration Scripts](#qgis-configuration-scripts)
-* [QGIS Folder Structure](#qgis-folder-structure)
-    + [QGIS Python Distribution](#qgis-python-distribution)
-    + [QGIS Python Modules](#qgis-python-modules)
-    + [QGIS Supporting Programs](#qgis-supporting-programs)
+*   [Install QGIS](#install-qgis)
+*   [Install Additional Python Packages](#install-additional-python-packages)
+*   [QGIS Configuration Scripts](#qgis-configuration-scripts)
+*   [QGIS Folder Structure](#qgis-folder-structure)
+    +   [QGIS Python Distribution](#qgis-python-distribution)
+    +   [QGIS Python Modules](#qgis-python-modules)
+    +   [QGIS Supporting Programs](#qgis-supporting-programs)
 
 -------------
 

@@ -3,12 +3,12 @@
 The GeoProcessor can be run in the development environment in several ways,
 including interactive and batch mode.
 
-* [Introduction](#introduction)
-* [Running Interactively](#running-interactively)
-	+ [Run Using Dev Scripts](#run-using-dev-scripts)
-	+ [Run in PyCharm](#run-in-pycharm)
-	+ [Run in Development Staging Virtual Environment](#run-in-development-staging-virtual-environment)
-	+ [Run the Installer and Run the GeoProcessor](#run-the-installer-and-run-the-geoprocessor)
+*   [Introduction](#introduction)
+*   [Running Interactively](#running-interactively)
+    +   [Run Using Dev Scripts](#run-using-dev-scripts)
+    +   [Run in PyCharm](#run-in-pycharm)
+    +   [Run in Development Staging Virtual Environment](#run-in-development-staging-virtual-environment)
+    +   [Run the Installer and Run the GeoProcessor](#run-the-installer-and-run-the-geoprocessor)
 
 ------------------
 
@@ -36,11 +36,11 @@ Running the UI also exercises UI code that is difficult to test with the
 automated tests, which focus on testing computational code.
 Repetitive use also helps the software developer identify user experience issues including:
 
-* inefficiencies related to bad design
-* repetitive multi-step sequences
-* confusing features
-* functionality limitations
-* performance issues
+*   inefficiencies related to bad design
+*   repetitive multi-step sequences
+*   confusing features
+*   functionality limitations
+*   performance issues
 
 The following sections describe how to run the GeoProcessor interactively in various environments.
 
@@ -52,8 +52,8 @@ without PyCharm being involved.
 
 The GeoProcessor can be run in the development environment by running the following batch files in a Windows command shell window.
 
-* `scripts/gpdev.bat` - run command file in batch mode, for example for automated tests
-* `scripts/gpuidev.bat` - start the GeoProcessor UI
+*   `scripts/gpdev.bat` - run command file in batch mode, for example for automated tests
+*   `scripts/gpuidev.bat` - start the GeoProcessor UI
 
 The `gpuidev.bat` batch file calls the `gpdev.bat` file with `--ui` option, which is passed to the Python `gp.py` script.
 Use the `/h` option to see the usage of the scripts.
@@ -95,12 +95,12 @@ and the GeoProcessor software can be run to test the software before final insta
 
 To run the software in the development staging virtual environment:
 
-1. For Windows, open a Windows command prompt window.
-2. Change to the appropriate folder such as `venv-tmp/gptest-1.3.0-win-qgis-3.10-venv/scripts` for Windows and QGIS 3.10.
-Virtual environments are created for each operating system and QGIS version.
-3. Run the appropriate script:
-	1. `gpui.bat` to run the GeoProcessor in user interface mode on Windows.
-	2. `gp.bat` to run the GeoProcessor in batch mode.
+1.  For Windows, open a Windows command prompt window.
+2.  Change to the appropriate folder such as `venv-tmp/gptest-1.3.0-win-qgis-3.10-venv/scripts` for Windows and QGIS 3.10.
+    Virtual environments are created for each operating system and QGIS version.
+3.  Run the appropriate script:
+    1.  `gpui.bat` to run the GeoProcessor in user interface mode on Windows.
+    2.  `gp.bat` to run the GeoProcessor in batch mode.
 
 ### Run the Installer and Run the GeoProcessor ###
 

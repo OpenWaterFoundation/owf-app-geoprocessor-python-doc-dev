@@ -3,12 +3,12 @@
 The GeoProcessor is designed to facilitate automated testing.
 Each command file and suites of command files can be tested.
 
-* [Introduction](#introduction)
-* [Unit Tests](#unit-tests)
-* [Functional Tests](#functional-tests)
-	+ [Run Individual Test in UI](#run-individual-test-in-ui)
-	+ [Run Test Suite in UI](#run-test-suite-in-ui)
-	+ [Run Test Suite in Batch Mode](#run-test-suite-in-batch-mode)
+*   [Introduction](#introduction)
+*   [Unit Tests](#unit-tests)
+*   [Functional Tests](#functional-tests)
+    +   [Run Individual Test in UI](#run-individual-test-in-ui)
+    +   [Run Test Suite in UI](#run-test-suite-in-ui)
+    +   [Run Test Suite in Batch Mode](#run-test-suite-in-batch-mode)
 
 --------------------
 
@@ -41,7 +41,7 @@ Functional tests stored in the above repository are generally run one of followi
 
 Individual tests are run in the UI similar to running any command file.
 Test command files are available in the repository for each command:
-[`owf-app-geoprocessor-python-test/test/commands`](https://github.com/OpenWaterFoundation/owf-app-geoprocessor-python-test/tree/master/test/commands).
+[`owf-app-geoprocessor-python-test/test/commands`](https://github.com/OpenWaterFoundation/owf-app-geoprocessor-python-test/tree/main/test/commands).
 
 The tests should be created and run to ensure that software functionality is as expected.
 An example test command file is:
@@ -66,30 +66,30 @@ CompareFiles(InputFile1="expected-results/test-CopyGeoLayer-Line-out.geojson", I
 
 Guidelines for tests are:
 
-1. Name test command files similar to `test-CommandName-specifics.gp`, with `specifics` being a sequence of dash-separated words that describes the test.
-2. Each command file should test one or a small number of features.
-3. Folders involved in each command's tests include:
-	1. `data` - use for static data needed as input to the tests.
-	If appropriate, create command files in the `data` folder to create the static data, to record how data files were created.
-	2. `expected-results` - the expected results, which are verified and committed to the repository
-	3. `results` - the results generated each time the command file is run, not committed to the repository.
-	A `.gitignore` file should be created in each `results` folder to ignore all files in the folder except the `.gitignore` file.
-3. The sequence of each command file should be:
-	1. Start a log file using `StartLog` command.  The name of the log file should be the name of the command file with `.log`
-	and should be written to the `results` folder.
-	2. Comment(s) explaining the test(s).
-	3. Remove any test results using the `RemoveFile` command.
-	This ensures that if the software fails unexpectedly, the old results will not have been produced as a false positive test result.
-	4. Execute commands that comprise the test, for example run the command being tested with a specific combination of parameters.
-	5. Write results to the `expected-results` folder in a format that allows comparison (may skip if the comparison can be done in memory).
-	For example, write a GeoLayer to a GeoJSON file.
-	This command will be commented out once expected results are verified.  Expected results should be committed to the repository.
-	The name of output files should be the same as the command file with `-out` at end and instead of `gp` use a file extension that is appropriate,
-	for example `.geojson` for GeoJSON file.
-	6. Write the results again, to the `results` folder.  These results will be created each time the test is run and should not
-	be committed to the repository.
-	7. Compare the `results` with `expected-results` files using an appropriate comparison command, for example `CompareFiles`.
-	Such a command will evaluate whether the test passes or fails.
+1.  Name test command files similar to `test-CommandName-specifics.gp`, with `specifics` being a sequence of dash-separated words that describes the test.
+2.  Each command file should test one or a small number of features.
+3.  Folders involved in each command's tests include:
+    1.  `data` - use for static data needed as input to the tests.
+        If appropriate, create command files in the `data` folder to create the static data, to record how data files were created.
+    2.  `expected-results` - the expected results, which are verified and committed to the repository
+    3.  `results` - the results generated each time the command file is run, not committed to the repository.
+        A `.gitignore` file should be created in each `results` folder to ignore all files in the folder except the `.gitignore` file.
+3.  The sequence of each command file should be:
+    1.  Start a log file using `StartLog` command.  The name of the log file should be the name of the command file with `.log`
+        and should be written to the `results` folder.
+    2.  Comment(s) explaining the test(s).
+    3.  Remove any test results using the `RemoveFile` command.
+        This ensures that if the software fails unexpectedly, the old results will not have been produced as a false positive test result.
+    4.  Execute commands that comprise the test, for example run the command being tested with a specific combination of parameters.
+    5.  Write results to the `expected-results` folder in a format that allows comparison (may skip if the comparison can be done in memory).
+        For example, write a GeoLayer to a GeoJSON file.
+        This command will be commented out once expected results are verified.  Expected results should be committed to the repository.
+        The name of output files should be the same as the command file with `-out` at end and instead of `gp` use a file extension that is appropriate,
+        for example `.geojson` for GeoJSON file.
+    6.  Write the results again, to the `results` folder.  These results will be created each time the test is run and should not
+        be committed to the repository.
+    7.  Compare the `results` with `expected-results` files using an appropriate comparison command, for example `CompareFiles`.
+        Such a command will evaluate whether the test passes or fails.
 
 If a test fails, review the command status and log file and determine whether the issue is input, command parameters, or software issue.
 Resolve the issue as necessary to make he test pass.
@@ -104,25 +104,25 @@ For example, in the future, options will be provided to filter the commands that
 
 To create and run the test suite:
 
-1. **Create test suite command file** - Use the UI to open the command file
-[`test/suites/create/create-regression-test-command-file.gp`](https://github.com/OpenWaterFoundation/owf-app-geoprocessor-python-test/blob/master/test/suites/create/create-regression-test-command-file.gp).
-This runs the `CreateRegressionTestCommandFile` command, which walks the folder containing command tests
-and creates a single command file with `RunCommands` commands.
-Each `RunCommands` command will run one command file.
-2. **Run the test suite command file** - Use the UI to open the command file created from the above:  `test/suites/run/geoprocessor-tests.gp` and run the commands.
-3. **Review test results**:
-	1. Review the log file created by the previous step and command files that were run
-	(from `StartLog` commands used in tests).
-	2. Review the test summary file (`geoprocessor-tests-out.gp.txt`) that was generated by the test suite command file.
-	This has one line per test indicating whether the test passed, and a summary at the bottom.
-	Use a text editor to search for failures.
-	See the example below.
-	3. Review the command summary file (`geoprocessor-tests.gp.summary.html`) that was generated by the test suite command file
-	This file contains a summary of all command log messages in a color-coded HTML file,
-	which provide specifics for failed tests.
-	View the file in a web browser.
-	See the example below.
-	4. Fix issues in the software and test and run again.
+1.  **Create test suite command file** - Use the UI to open the command file
+    [`test/suites/create/create-regression-test-command-file.gp`](https://github.com/OpenWaterFoundation/owf-app-geoprocessor-python-test/tree/main/test/suites/create/create-regression-test-command-file.gp).
+    This runs the `CreateRegressionTestCommandFile` command, which walks the folder containing command tests
+    and creates a single command file with `RunCommands` commands.
+    Each `RunCommands` command will run one command file.
+2.  **Run the test suite command file** - Use the UI to open the command file created from the above:  `test/suites/run/geoprocessor-tests.gp` and run the commands.
+3.  **Review test results**:
+    1.  Review the log file created by the previous step and command files that were run
+        (from `StartLog` commands used in tests).
+    2.  Review the test summary file (`geoprocessor-tests-out.gp.txt`) that was generated by the test suite command file.
+        This has one line per test indicating whether the test passed, and a summary at the bottom.
+        Use a text editor to search for failures.
+        See the example below.
+    3.  Review the command summary file (`geoprocessor-tests.gp.summary.html`) that was generated by the test suite command file
+        This file contains a summary of all command log messages in a color-coded HTML file,
+        which provide specifics for failed tests.
+        View the file in a web browser.
+        See the example below.
+    4.  Fix issues in the software and test and run again.
 
 The following example illustrates the test suite command file:
 
