@@ -1,8 +1,8 @@
 # GeoProcessor / Introduction #
 
-* [Introduction](#introduction)
-* [GeoProcessor Features](#geoprocessor-features)
-* [GeoProcessor Open Source Project](#geoprocessor-open-source-project)
+*   [Introduction](#introduction)
+*   [GeoProcessor Features](#geoprocessor-features)
+*   [GeoProcessor Open Source Project](#geoprocessor-open-source-project)
 
 ---------------
 

@@ -4,11 +4,11 @@ It is recommended that GeoProcessor development occur in a folder structure that
 This ensures that scripts used to perform development tasks work for all developers
 and developer documentation is accurate.
 
-* [Development Environment Folders](#development-environment-folders)
-* [Developer Preferences](#developer-preferences)
-* [Troubleshooting](#troubleshooting)
-	+ [Spaces in Paths](#spaces-in-paths)
-	+ [Paths Longer than 127 Characters](#paths-longer-than-127-characters)
+*   [Development Environment Folders](#development-environment-folders)
+*   [Developer Preferences](#developer-preferences)
+*   [Troubleshooting](#troubleshooting)
+    +   [Spaces in Paths](#spaces-in-paths)
+    +   [Paths Longer than 127 Characters](#paths-longer-than-127-characters)
 
 ----------------
 

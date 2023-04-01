@@ -6,19 +6,19 @@ This documentation was created to record experiments with installing different v
 This was done to evaluate transition from QGIS 2 to QGIS 3.
 Questions that need to be answered relevant to the GeoProcessor include:
 
-* Can multiple versions of QGIS be installed on a computer at the same time? Answer:  Yes, with some limitations.
-* Can the GeoProcessor be run with a specific QGIS versions? Answer:  Yes, by configuring the Python environment.
+*   Can multiple versions of QGIS be installed on a computer at the same time? Answer:  Yes, with some limitations.
+*   Can the GeoProcessor be run with a specific QGIS versions? Answer:  Yes, by configuring the Python environment.
 
 The following sections are included in this page.  Experiments were done on a Windows 10 computer.
 
-* [QGIS Versioning Overview](#qgis-versioning-overview)
-* [OSGeo4W Suite Download of QGIS vs. Stand-alone QGIS Download](#osgeo4w-suite-download-of-qgis-vs-stand-alone-qgis-download)
-* [How to Download Multiple Versions of QGIS on a Windows Machine](#how-to-download-multiple-versions-of-qgis-on-a-windows-machine)
-* [GeoProcessor Testing Overview](#geoprocessor-testing-overview)
-	+ [Methodology](#methodology)
-	+ [Findings](#findings)
-	+ [Conclusions](#conclusions)
-* [Resources](#resources)
+*   [QGIS Versioning Overview](#qgis-versioning-overview)
+*   [OSGeo4W Suite Download of QGIS vs. Stand-alone QGIS Download](#osgeo4w-suite-download-of-qgis-vs-stand-alone-qgis-download)
+*   [How to Download Multiple Versions of QGIS on a Windows Machine](#how-to-download-multiple-versions-of-qgis-on-a-windows-machine)
+*   [GeoProcessor Testing Overview](#geoprocessor-testing-overview)
+    +   [Methodology](#methodology)
+    +   [Findings](#findings)
+    +   [Conclusions](#conclusions)
+*   [Resources](#resources)
 
 ----
 
@@ -26,15 +26,15 @@ The following sections are included in this page.  Experiments were done on a Wi
 
 QGIS is distributed by 2 methods: 
 
-* **OSGEO4W suite** - what most people will use to install the current version (3.0+, not stable as of March 2018),
-and advanced install allows installing the long-term release (2.18+, stable)
-* **stand-alone installer** - can be used to install specific versions, as needed
+*   **OSGEO4W suite** - what most people will use to install the current version (3.0+, not stable as of March 2018),
+    and advanced install allows installing the long-term release (2.18+, stable)
+*   **stand-alone installer** - can be used to install specific versions, as needed
 
 QGIS has multiple releases. Each version is defined by QGIS `A`.`B`.`C` where: 
 
-* `A` is the `MAJOR` release
-* `B` is the `MINOR` release
-* `C` is a `BUG FIX`
+*   `A` is the `MAJOR` release
+*   `B` is the `MINOR` release
+*   `C` is a `BUG FIX`
 
 For example, version `2.18.17`  is `MAJOR` release `2`, `MINOR` release `18` and `BUG FIX` `17`.
 
@@ -51,45 +51,45 @@ each of the installation types described below.**
 
 QGIS can be downloaded and installed two ways:
 
-1. **OSGeo4W suite**:
-	* this is the default installer that includes bundled components indicated above
-	* is only available for the latest version (version 3 as of March 10, 2018, does not appear to be production-ready)
-	* on Windows 64-bit, installs to `C:\OSGeo4W64`
-		+ within this folder the default is to run the latest QGIS, for example 3.0
-		 ("qgis" will be used in folders and scripts, for example `qgis.bat`)
-		+ using the ***Advanced Install on the QGIS download page***,
-		can optionally install other versions such as the latest long-term release, for example 2.18
-		("ltr" will be used in folders and scripts, for example `qgis-ltr.bat`), see below for more explanation
-		+ the installer will overwrite any previous contents in this folder
-		(use stand-alone installer approach to install older versions on the same machine)
-2. **"stand-alone" install**:
-	* includes some bundled components (**unclear how many**)
-	* allows installing older versions
-	* On Windows, installs to `C:\Program Files\QGIS QGIS-Name`
-		+ only one variant of QGIS is installed, in this case the most recent version
-		(not like the OSGeo4W suite, see below for more explanation)
-		+ the installer will overwrite any previous contents in this folder considering the minor release
-		(cannot install 2.18.1 and 2.18.2 on the same machine but can install 2.17 and 2.18)
-	* QGIS is run using normal `qgis.bat`, etc.
+1.  **OSGeo4W suite**:
+    *   this is the default installer that includes bundled components indicated above
+    *   is only available for the latest version (version 3 as of March 10, 2018, does not appear to be production-ready)
+    *   on Windows 64-bit, installs to `C:\OSGeo4W64`
+        +   within this folder the default is to run the latest QGIS, for example 3.0
+            ("qgis" will be used in folders and scripts, for example `qgis.bat`)
+        +   using the ***Advanced Install on the QGIS download page***,
+            can optionally install other versions such as the latest long-term release, for example 2.18
+            ("ltr" will be used in folders and scripts, for example `qgis-ltr.bat`), see below for more explanation
+        +   the installer will overwrite any previous contents in this folder
+            (use stand-alone installer approach to install older versions on the same machine)
+2.  **"stand-alone" install**:
+    *   includes some bundled components (**unclear how many**)
+    *   allows installing older versions
+    *   On Windows, installs to `C:\Program Files\QGIS QGIS-Name`
+        +   only one variant of QGIS is installed, in this case the most recent version
+            (not like the OSGeo4W suite, see below for more explanation)
+        +   the installer will overwrite any previous contents in this folder considering the minor release
+            (cannot install 2.18.1 and 2.18.2 on the same machine but can install 2.17 and 2.18)
+    *   QGIS is run using normal `qgis.bat`, etc.
 
 The following presents more information about the OSgeo4W suite.
 For Windows 10, the OSGeo4W suite installer can install three variants of QGIS under the `C:\Windows\OSGeo4W64` folder:
 
-* `Latest Release`:
-	+ Most recently released version of QGIS
-	+ Beware that current 3.x release is new and may not be production-ready
-	+ Will run from the Windows ***Start*** menu
-	+ Run on the command line with `qgis.bat`
-	+ GeoProcessor is currently **not supported** with this version
-* `Long Term Release (qgis-ltr-full)`:
-	+ Most recent, stable version of QGIS (version 2.18.17 as of March 10, 2018, since version 3.0 needs more time)
-	+ Run on the command line with `qgis-ltr.bat`
-	+ GeoProcessor is currently supported with this version by running `qgis-ltr.bat`
-	in development and deployed environments
-* `Bleeding-Edge Development Build (qgis-dev-full)`:
-	+ Unstable development version of QGIS.
-	+ Should generally be avoided except by software developers that are contributing to QGIS or
-	are troubleshooting
+*   `Latest Release`:
+    +   Most recently released version of QGIS
+    +   Beware that current 3.x release is new and may not be production-ready
+    +   Will run from the Windows ***Start*** menu
+    +   Run on the command line with `qgis.bat`
+    +   GeoProcessor is currently **not supported** with this version
+*   `Long Term Release (qgis-ltr-full)`:
+    +   Most recent, stable version of QGIS (version 2.18.17 as of March 10, 2018, since version 3.0 needs more time)
+    +   Run on the command line with `qgis-ltr.bat`
+    +   GeoProcessor is currently supported with this version by running `qgis-ltr.bat`
+        in development and deployed environments
+*   `Bleeding-Edge Development Build (qgis-dev-full)`:
+    +   Unstable development version of QGIS.
+    +   Should generally be avoided except by software developers that are contributing to QGIS or
+        are troubleshooting
 
 Installing the OSGeo4W suite using the ***Advanced Install*** is recommended,
 in order to also install the long-term release.
@@ -167,10 +167,16 @@ See `Stack Exchange - What is OSGeo4W?` link in the [Resources](#resources) page
 
 ## GeoProcessor Testing Overview ##
 
-The OWF GeoProcessor is reliant on the QGIS software. The GeoProcessor testing framework has been developed to test the GeoProcessor's functionality in varied environments. It is pertinent to test the GeoProcessor functionality for different versions of QGIS. Below are some questions that need to be addressed and answered. 
+The OWF GeoProcessor is reliant on the QGIS software.
+The GeoProcessor testing framework has been developed to test the GeoProcessor's functionality in varied environments.
+It is pertinent to test the GeoProcessor functionality for different versions of QGIS.
+Below are some questions that need to be addressed and answered. 
 
-* Will the OWF GeoProcessor function properly on a QGIS version that was deployed with the `stand-alone installers`? Or, is it required that the QGIS software is deployed from within the OSGeo4W suite? Currently the GeoProcessor has only been tested with the QGIS software in the OSGeo4W suite. 
-* Which versions of QGIS are compatible with the GeoProcessor? QGIS `3.0` was recently released. What will happen if the GeoProcessor runs with QGIS `3.0`? Currently the GeoProcessor has been developed for QGIS `2.18`. 
+*   Will the OWF GeoProcessor function properly on a QGIS version that was deployed with the `stand-alone installers`?
+    Or, is it required that the QGIS software is deployed from within the OSGeo4W suite?
+    Currently the GeoProcessor has only been tested with the QGIS software in the OSGeo4W suite. 
+*   Which versions of QGIS are compatible with the GeoProcessor? QGIS `3.0` was recently released.
+    What will happen if the GeoProcessor runs with QGIS `3.0`? Currently the GeoProcessor has been developed for QGIS `2.18`. 
 
 ### Methodology ###
 
@@ -241,8 +247,8 @@ The OWF GeoProcessor is reliant on the QGIS software. The GeoProcessor testing f
 
 ## Resources ##
 
-* [Stack Overflow - Can I install two versions of QGIS on the same computer?](https://gis.stackexchange.com/questions/32820/can-i-install-two-versions-of-qgis-on-the-same-computer)
-* [Stack Overflow - How to install OSGeo4W libraries in older version of QGIS (2.16)?](https://gis.stackexchange.com/questions/230672/how-to-install-osgeo4w-libraries-in-older-version-of-qgis-2-16)
-* [Stack Exchange - What is OSGeo4W?](https://gis.stackexchange.com/questions/164976/what-is-osgeo4w)
-* [QGIS Downloads - All Releases](https://qgis.org/downloads/)
-* [QGIS Downloads - Select Releases](http://download.osgeo.org/qgis/windows/)
+*   [Stack Overflow - Can I install two versions of QGIS on the same computer?](https://gis.stackexchange.com/questions/32820/can-i-install-two-versions-of-qgis-on-the-same-computer)
+*   [Stack Overflow - How to install OSGeo4W libraries in older version of QGIS (2.16)?](https://gis.stackexchange.com/questions/230672/how-to-install-osgeo4w-libraries-in-older-version-of-qgis-2-16)
+*   [Stack Exchange - What is OSGeo4W?](https://gis.stackexchange.com/questions/164976/what-is-osgeo4w)
+*   [QGIS Downloads - All Releases](https://qgis.org/downloads/)
+*   [QGIS Downloads - Select Releases](http://download.osgeo.org/qgis/windows/)

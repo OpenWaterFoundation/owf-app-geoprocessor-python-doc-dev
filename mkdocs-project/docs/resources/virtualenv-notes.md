@@ -12,8 +12,8 @@ Additional effort will be needed to evaluate how a virtual environment might wor
 
 Resources:
 
-* [Python Virtual Environment Introduction](https://www.geeksforgeeks.org/python-virtual-environment/)
-* [Creating Python Virtual Environment in Windows and Linux](https://www.geeksforgeeks.org/creating-python-virtual-environment-windows-linux/)
+*   [Python Virtual Environment Introduction](https://www.geeksforgeeks.org/python-virtual-environment/)
+*   [Creating Python Virtual Environment in Windows and Linux](https://www.geeksforgeeks.org/creating-python-virtual-environment-windows-linux/)
 
 ## Cygwin Python Setup ##
 
@@ -75,7 +75,7 @@ $ which pip3
 /usr/bin/pip3
 ```
 
-The `virtualenv` module is also needed to create vitual environments.  Check for availability with:
+The `virtualenv` module is also needed to create virtual environments.  Check for availability with:
 
 ```
 $ virtualenv --version
@@ -121,32 +121,32 @@ Some pip downloads try to recompile C programs. There are pip options `--only-bi
 even so it seems that being able to compile is a better option.  Therefore, make sure that Cygwin packages
 are installed for:
 
-* `gcc-core` - needed to compile C programs
-* `gcc-fortran` - needed to compile Fortran
-* `python3-devel` - need for Python development tools, which includes Python.h header file, needed by multiple packages
-* `libffi-devel` - needed to compile requests[security]
-* `libpq-devel` - needed for psycopg2
-* `openssl-devel` - needed to compile requests[security]
-* For Pandas, see [list of required modules](https://stackoverflow.com/questions/34341112/pandas-build-on-cygwin)
-and substitue the Python3 versions listed below.  Tried to let pip build Pandas but it had lots of issues.
-	+ `python3-numpy`
-	+ `python3-six`
-	+ `python3-wheel`
-	+ `python3-setuptools`
-	+ `python3-pip`
-	+ `python3-cython`
-	+ `gcc-g++`
-	+ `make`
-	+ `wget`
+*   `gcc-core` - needed to compile C programs
+*   `gcc-fortran` - needed to compile Fortran
+*   `python3-devel` - need for Python development tools, which includes Python.h header file, needed by multiple packages
+*   `libffi-devel` - needed to compile requests[security]
+*   `libpq-devel` - needed for `psycopg2`
+*   `openssl-devel` - needed to compile requests[security]
+*   For Pandas, see [list of required modules](https://stackoverflow.com/questions/34341112/pandas-build-on-cygwin)
+    and substitue the Python3 versions listed below.  Tried to let pip build Pandas but it had lots of issues.
+    +   `python3-numpy`
+    +   `python3-six`
+    +   `python3-wheel`
+    +   `python3-setuptools`
+    +   `python3-pip`
+    +   `python3-cython`
+    +   `gcc-g++`
+    +   `make`
+    +   `wget`
 
 Rather than using pip to install qt5, install the following via Cygwin, with the first definitely being needed:
 
-* `python3-pyqt5`
-* `python3-pyqt5-qsci`
-* `python3-pyqt5-qt3d`
-* `python3-pyqt5-qtchart`
-* `python3-pyqt5-qtdatavisualization`
-* `python3-sip` - C++ to Python bindings, required by Qt5
+*   `python3-pyqt5`
+*   `python3-pyqt5-qsci`
+*   `python3-pyqt5-qt3d`
+*   `python3-pyqt5-qtchart`
+*   `python3-pyqt5-qtdatavisualization`
+*   `python3-sip` - C++ to Python bindings, required by Qt5
 
 The above installs into Cygwin.  Need to copy the PyQt5 and sip* files from /usr/lib/python3.6/site-packages to the virtualenv.
 
@@ -169,7 +169,7 @@ Could not connect to any X display.
 
 Need to start the Cygwin X-windows. Make sure to install the following from the Cygwin setup program:
 
-* `xinit`
+*   `xinit`
 
 Then run the following from any Cygwin terminal:  `startxwin` or use the **Cygwin X / XWin Server*** from ***Start*** menu.
 

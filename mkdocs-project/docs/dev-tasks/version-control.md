@@ -22,7 +22,7 @@ all GeoProcessor repositories are tagged with a tag name like `GeoProcessor-1.1.
 In cases where bug fixes to a version are needed, a long-running branch might be created,
 or an incremental version along the `main` may be created.
 
-Once a relase is made, the version number is incremented in the `geoprocessor/app/version.py` file with a `dev` suffix such as `1.3.0dev`
+Once a release is made, the version number is incremented in the `geoprocessor/app/version.py` file with a `dev` suffix such as `1.3.0dev`
 and is retained until the next release is made, at which time the `dev` is removed.
 The development version can be worked on as long as necessary.
 Currently, no continuous/nightly build occurs, but this may be implemented at some point, with corresponding build number.

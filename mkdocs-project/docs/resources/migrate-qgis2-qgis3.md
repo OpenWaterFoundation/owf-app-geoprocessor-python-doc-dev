@@ -8,11 +8,11 @@ This documentation notes the changes that were made to the GeoProcessor to migra
 
 ## How to import additional Python packages
 
-1. Open `OsGeo4W` shell
-2. Enter `set PYTHONHOME=C:\OSGeo4W64\apps\Python36`
-3. Enter `py -m pip install pandas`
-4. Enter `py -m pip install requests[security]`
-5. Enter `py -m pip install openpyxl`
+1.  Open `OsGeo4W` shell
+2.  Enter `set PYTHONHOME=C:\OSGeo4W64\apps\Python36`
+3.  Enter `py -m pip install pandas`
+4.  Enter `py -m pip install requests[security]`
+5.  Enter `py -m pip install openpyxl`
 
 ## Log of Changes made to Commands to Have all GP Tests Pass
 
@@ -129,22 +129,22 @@ No Python error. Layers (with one feature) read in from shapefile format and the
 
 This error is a bug within QGIS3 and there is no say on when it will be resolved. The bug does not break the functionality of the commands but does cause many of the tests to fail given the different terminology. To move forward, the expected results for the following tests were recreated. Once this bug is fixed, the tests will fail again, and the expected results will once again need to be recreated. 
 
-- `test-MergeGeoLayers-Lines-AttributeMap.gp`
-- `test-MergeGeoLayers-Lines-NoAttributeMap.gp`
-- `test-ReadGeoLayerFromShapefile-Line.gp`
-- `test-ReadGeoLayerFromShapefile-Polygon.gp`
-- `test-ClipGeoLayer-linesAsInput-Memory.gp`
-- `test-ClipGeoLayer-linesAsInput.gp`
-- `test-ClipGeoLayer-polygonsAsInput.gp` 
-- `test-ReadGeoLayersFromFolder.gp`
-- `test-IntersectGeoLayer-lines-linesAsIntersect.gp`
-- `test-IntersectGeoLayer-lines-polygonAsIntersect-ExcludeIntersectAttributes.gp`
-- `test-IntersectGeoLayer-lines-polygonAsIntersect-IncludeIntersectAttributes.gp`
-- `test-IntersectGeoLayer-lines-polygonAsIntersect-outputGeoLayerID.gp`
-- `test-IntersectGeoLayer-lines-polygonAsIntersect.gp`
-- `test-IntersectGeoLayer-points-linesAsIntersect.gp`
-- `test-IntersectGeoLayer-points-pointsAsIntersect.gp`
-- `test-IntersectGeoLayer-polygons-polygonAsIntersect.gp`
+-   `test-MergeGeoLayers-Lines-AttributeMap.gp`
+-   `test-MergeGeoLayers-Lines-NoAttributeMap.gp`
+-   `test-ReadGeoLayerFromShapefile-Line.gp`
+-   `test-ReadGeoLayerFromShapefile-Polygon.gp`
+-   `test-ClipGeoLayer-linesAsInput-Memory.gp`
+-   `test-ClipGeoLayer-linesAsInput.gp`
+-   `test-ClipGeoLayer-polygonsAsInput.gp` 
+-   `test-ReadGeoLayersFromFolder.gp`
+-   `test-IntersectGeoLayer-lines-linesAsIntersect.gp`
+-   `test-IntersectGeoLayer-lines-polygonAsIntersect-ExcludeIntersectAttributes.gp`
+-   `test-IntersectGeoLayer-lines-polygonAsIntersect-IncludeIntersectAttributes.gp`
+-   `test-IntersectGeoLayer-lines-polygonAsIntersect-outputGeoLayerID.gp`
+-   `test-IntersectGeoLayer-lines-polygonAsIntersect.gp`
+-   `test-IntersectGeoLayer-points-linesAsIntersect.gp`
+-   `test-IntersectGeoLayer-points-pointsAsIntersect.gp`
+-   `test-IntersectGeoLayer-polygons-polygonAsIntersect.gp`
 
 ### ReadGeoLayerFromFGDB
 
